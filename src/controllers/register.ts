@@ -1,10 +1,10 @@
+const { v4: uuid } = require('uuid');
+
 import User from "../User";
 import validateEmail from "../validateEmail"
 const bcrypt = require('bcrypt');
 
-
-var Register = function(req: any, res: any, users:Array<User>, userCount:number) {
-    console.log("register");
+const Register = (req: any, res: any, users:Array<User>) => {
     const { 
         username,
         email,
@@ -42,18 +42,18 @@ var Register = function(req: any, res: any, users:Array<User>, userCount:number)
     bcrypt.genSalt(10, (err:any, salt:any) => {
         bcrypt.hash(password, salt, (err:any, hash:any) => {
             const user:User = new User(
-                userCount.toString(),
+                uuid(),
                 username,
                 hash,
                 email
             );
             users.push(user);
-            userCount++;
+            req.session.key = user.id;
             res.send({
                 success:true
             });
-            console.log(users);
         })
     })
 }
-exports.default = Register;
+
+export default Register;

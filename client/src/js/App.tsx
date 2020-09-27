@@ -4,8 +4,11 @@ import Home from './components/Home';
 import Profile from './components/Profile';
 import Explore from './components/Explore';
 import Login from './components/Login';
+import Logout from './components/Logout';
 import Create from './components/Create';
 import Navbar from './components/Navbar';
+
+import SessionHandler from './components/SessionHandler';
 
 import { connect } from 'react-redux';
 
@@ -33,6 +36,8 @@ class AppBind extends Component<AppProps> {
       }>
 
         <div className="background"></div>
+
+        <SessionHandler />
 
         <Navbar />
 
@@ -62,6 +67,11 @@ class AppBind extends Component<AppProps> {
             exact
             path="/create"
             component={Create}/>
+            
+          <Route 
+            exact
+            path="/logout"
+            component={Logout}/>
 
         </Switch>
 

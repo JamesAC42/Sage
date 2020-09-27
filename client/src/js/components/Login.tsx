@@ -1,95 +1,37 @@
 import React, { Component } from 'react';
 import '../../css/login.css';
 import { Redirect } from 'react-router';
+import { connect } from 'react-redux';
 
-interface UpdateProps {
-    updateValue: (value:string) => void
+import validateEmail from '../validateEmail';
+
+import LoginState from './state/LoginState';
+import { InputItem, PasswordItem } from './InputItem';
+import { sessionActions } from '../actions/actions';
+
+interface LoginProps {
+    session : {
+        loggedin: boolean
+    },
+    login: () => {}
 }
 
-class InputItem extends Component<UpdateProps> {
-    render() {
-        return(
-            <div className="login-input-item">
-                <input 
-                    type="text" 
-                    maxLength={50}
-                    onChange={(
-                        ev: React.ChangeEvent<HTMLInputElement>,
-                    ): void => this.props.updateValue(ev.target.value)}/>
-            </div>
-        )
-    }
+const mapStateToProps = (state: any, props: any) => ({
+    session: state.session
+})
+
+const mapDispatchToProps = {
+    login: sessionActions.login
 }
 
-class PasswordItem extends Component<UpdateProps> {
-    render() {
-        return(
-            <div className="login-input-item">
-                <input 
-                    type="password" 
-                    maxLength={50}
-                    onChange={(
-                        ev: React.ChangeEvent<HTMLInputElement>,
-                    ): void => this.props.updateValue(ev.target.value)}/>
-            </div>
-        )
-    }
-}
+class LoginBind extends Component<LoginProps> {
 
-interface ILogin {
-    username:string,
-    password:string
-}
-
-interface IRegister {
-    email:string,
-    username:string,
-    password:string,
-    passwordConfirm:string
-}
-
-interface ILoginState {
-    login:ILogin,
-    register:IRegister,
-    error: { login: string, register: string };
-    redirect: boolean;
-}
-
-class LoginState implements ILoginState {
-    login: ILogin;
-    register: IRegister;
-    error: { login: string, register: string };
-    redirect: boolean;
-    constructor() {
-        this.login = {
-            username: '',
-            password: '',
-        }
-        this.register = {
-            email: '',
-            username: '',
-            password: '',
-            passwordConfirm: ''
-        }
-        this.error = {
-            login: '',
-            register: ''
-        }
-        this.redirect = false;
-    }
-}
-
-function validateEmail(email:string) {
-    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase());
-}
-
-export default class Login extends Component {
     state: LoginState;
-    constructor(props:{}) {
+    constructor(props: LoginProps) {
         super(props);
         this.state = new LoginState();
     }
+
     updateLoginUsername = (a:string) => {
         this.setState({
             ...this.state,
@@ -144,6 +86,7 @@ export default class Login extends Component {
             }
         });
     }
+
     login = () => {
         if( 
             this.state.login.username === '' || 
@@ -157,7 +100,7 @@ export default class Login extends Component {
             });
             return;
         }
-        fetch('/login', {
+        fetch('/api/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -169,10 +112,7 @@ export default class Login extends Component {
         .then(response => response.json())
         .then(data => {
             if(data.success) {
-                this.setState({
-                    ...this.state,
-                    redirect: true
-                });
+                this.props.login();
             } else {
                 this.setState({
                     ...this.state,
@@ -221,12 +161,12 @@ export default class Login extends Component {
                 ...this.state,
                 error: {
                     ...this.state.error,
-                    register: 'Passwords do no match'
+                    register: 'Passwords do not match'
                 }
             });
             return;
         }
-        fetch('/register', {
+        fetch('/api/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -238,10 +178,7 @@ export default class Login extends Component {
         .then(response => response.json())
         .then(data => {
             if(data.success) {
-                this.setState({
-                    ...this.state,
-                    redirect: true
-                });
+                this.props.login();
             } else {
                 this.setState({
                     ...this.state,
@@ -257,6 +194,12 @@ export default class Login extends Component {
         })
     }
     render() {
+        if(this.props.session.loggedin === undefined) return null;
+        if(this.props.session.loggedin) {
+            return(
+                <Redirect to="/profile" />
+            )
+        }
         return(
             <div>
                 <div className="login-container">
@@ -344,11 +287,14 @@ export default class Login extends Component {
                         </div>
                     </div>
                 </div>
-                {
-                    this.state.redirect ?
-                        <Redirect to="/profile" /> : null
-                }
             </div>
         )
     }
 }
+
+const Login = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(LoginBind);
+
+export default Login;

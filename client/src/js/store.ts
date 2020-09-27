@@ -4,15 +4,20 @@ import {
 } from 'redux';
 
 import settings from './reducers/settings';
+import session from './reducers/session';
 
 let initState = {
     settings: {
         darkMode: false
+    },
+    session: {
+        loggedin: undefined
     }
 }
 
 const sageReducer = combineReducers({
-    settings
+    settings,
+    session
 });
 
 const configureStore = (reducer:any, initState:{}) => {

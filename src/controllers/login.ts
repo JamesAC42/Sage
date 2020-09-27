@@ -1,8 +1,7 @@
 import User from "../User";
 const bcrypt = require('bcrypt');
 
-var Login = (req: any, res: any, users:Array<User>) => {
-    console.log("login");
+const Login = (req: any, res: any, users:Array<User>) => {
     const { 
         username,
         password
@@ -12,21 +11,23 @@ var Login = (req: any, res: any, users:Array<User>) => {
     if(u === undefined) {
         res.send({
             success:false,
-            error: 'User does not exist'
+            error: 'User not found'
         });
         return;
     }
     bcrypt.compare(password, u.password, (err:any, result:any) => {
         if(result) {
+            req.session.key = u.id;
             res.send({
                 success:true
             })
         } else {
             res.send({
                 success:false,
-                error: 'Password was incorrect'
+                error: 'Username or password was incorrect'
             })
         }
     })
 }
-exports.default = Login;
+
+export default Login;

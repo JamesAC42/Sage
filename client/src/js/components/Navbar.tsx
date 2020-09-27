@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { connect, ConnectedProps } from 'react-redux';
+import { connect } from 'react-redux';
 import '../../css/navbar.css';
+
+import storageAvailable from '../checkStorage';
 
 import sun from '../../images/sun-black.png';
 import moon from '../../images/moon-white.png';
@@ -11,7 +13,8 @@ import {
 } from '../actions/actions';
 
 const mapStateToProps = (state:any, props:any) => ({
-    settings: state.settings
+    settings: state.settings,
+    session: state.session
 });
 
 const mapDispatchToProps = {
@@ -22,11 +25,26 @@ interface NavbarProps {
     settings: {
         darkMode: boolean
     },
+    session: {
+        loggedin: boolean
+    },
     toggleDarkmode: (enabled: boolean) => {}
 }
 
 class NavbarBind extends Component<NavbarProps> {
+    componentDidMount() {
+        if(storageAvailable()) {
+            if(localStorage['darkMode'] === undefined) return;
+            const dark:boolean = JSON.parse(localStorage['darkMode']);
+            if(dark) {
+                this.props.toggleDarkmode(dark);
+            }
+        }
+    }
     handleClick = () => {
+        if(storageAvailable()) {
+            localStorage['darkMode'] = JSON.stringify(!this.props.settings.darkMode);
+        }
         this.props.toggleDarkmode(!this.props.settings.darkMode);
     }
     render() {
@@ -41,12 +59,24 @@ class NavbarBind extends Component<NavbarProps> {
                 <div className="nav-item">
                     <Link to="/create">Create</Link>
                 </div>
-                <div className="nav-item">
-                    <Link to="/profile">Profile</Link>
-                </div>
-                <div className="nav-item">
-                    <Link to="/login">Login</Link>
-                </div>
+                {
+                    this.props.session.loggedin ?
+                    <div className="nav-item">
+                        <Link to="/profile">Profile</Link>
+                    </div> : null
+                }
+                {
+                    this.props.session.loggedin ?
+                    <div className="nav-item">
+                        <Link to="/logout">Logout</Link>
+                    </div> : null
+                }
+                {
+                    !this.props.session.loggedin?
+                    <div className="nav-item">
+                        <Link to="/login">Login</Link>
+                    </div> : null
+                }
                 <div className="nav-item">
                     <img 
                     src={
