@@ -174,3 +174,42 @@ div.login-error {
     background: rgb(163, 255, 191);
     color:rgb(20, 20, 20);
 }
+
+@media only screen and (max-height: 850px) {
+    
+    div.login-input-label {
+        height:25px;
+        font-size:14px;
+    }
+
+    div.login-input-label-inner {
+        height:25px;
+        line-height:30px;
+        width:70%;
+    }
+
+    div.login-input-item input {
+        height:25px;
+        line-height:25px;
+        width:70%;
+    }
+
+    div.login-submit-container {
+        margin-top:auto;
+    }
+    
+    div.login-submit-button,
+    div.register-submit-button {
+        height:30px;
+        line-height:30px;
+        width:100px;
+        font-size:14px;
+    }
+    
+    div.login-error {
+        height:40px;
+        line-height:40px;
+        margin-top:0;
+    }
+
+}
