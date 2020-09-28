@@ -11,7 +11,7 @@ import destroySession from './controllers/destroySession';
 
 import User from './User';
 
-const conString = "postgres://postgres:admin@localhost:5432/holocoin";
+const conString = "postgres://postgres:admin@localhost:5432/sage";
 const client = new pg.Client(conString);
 client.connect();
 
