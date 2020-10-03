@@ -1,8 +1,10 @@
+@import 'settings.scss';
+
 .profile-outer {
     position:fixed;
     height:100vh;
     width:100vw;
-    background:rgb(255, 255, 255);
+    background: rgb(255, 255, 255);
     top:0;
     left:0;
     transform:translateY(80px);

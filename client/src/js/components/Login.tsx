@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../../css/login.css';
+import '../../css/login.scss';
 import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
 
@@ -88,8 +88,8 @@ class LoginBind extends Component<LoginProps> {
     }
 
     login = () => {
-        if( 
-            this.state.login.username === '' || 
+        if(
+            this.state.login.username === '' ||
             this.state.login.password === '') {
             this.setState({
                 ...this.state,
@@ -213,7 +213,7 @@ class LoginBind extends Component<LoginProps> {
                                     Username
                                 </div>
                             </div>
-                            
+
                             <InputItem updateValue={this.updateLoginUsername} />
 
                             <div className="login-input-label">
@@ -221,12 +221,12 @@ class LoginBind extends Component<LoginProps> {
                                     Password
                                 </div>
                             </div>
-                            
+
                             <PasswordItem updateValue={this.updateLoginPassword} />
 
                         </div>
                         <div className="login-submit-container">
-                            <div 
+                            <div
                                 className="login-submit-button"
                                 onClick={this.login}>
                                 LOG IN
@@ -270,12 +270,12 @@ class LoginBind extends Component<LoginProps> {
                                     Confirm Password
                                 </div>
                             </div>
-                            
+
                             <PasswordItem updateValue={this.updateRegisterPasswordConfirm} />
 
                         </div>
                         <div className="login-submit-container">
-                            <div 
+                            <div
                                 className="register-submit-button"
                                 onClick={this.register}>
                                 REGISTER

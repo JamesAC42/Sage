@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import '../../css/navbar.css';
+import '../../css/navbar.scss';
 
 import storageAvailable from '../checkStorage';
 
@@ -78,13 +78,13 @@ class NavbarBind extends Component<NavbarProps> {
                     </div> : null
                 }
                 <div className="nav-item">
-                    <img 
+                    <img
                     src={
                         this.props.settings.darkMode ?
                             moon : sun
-                    } 
-                    alt={"darkmode-img"} 
-                    className="darkmode-img" 
+                    }
+                    alt={"darkmode-img"}
+                    className="darkmode-img"
                     onClick={(
                         ev: React.MouseEvent,
                     ): void => {this.handleClick()}}/>
@@ -98,5 +98,5 @@ const Navbar = connect(
     mapStateToProps,
     mapDispatchToProps
 )(NavbarBind);
-  
+
 export default Navbar;
