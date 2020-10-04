@@ -1,3 +1,5 @@
+@import 'settings.scss';
+
 .login-container {
     position:fixed;
     top:50%;
@@ -6,14 +8,16 @@
     height:60vh;
     width:60vw;
     border-radius:10px;
-    -webkit-box-shadow: 0px 7px 32px -23px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 7px 32px -23px rgba(0,0,0,0.75);
     box-shadow: 0px 7px 32px -23px rgba(0,0,0,0.75);
     display:flex;
     align-items:stretch;
     justify-content: center;
     flex-direction:row;
-    background:#fff;
+    background: $ui-light;
+
+    .dark & {
+        background: $ui-dark;
+    }
 }
 
 div.login, div.register {
@@ -25,14 +29,20 @@ div.login, div.register {
 }
 
 div.login {
-    border-right:1px solid rgb(206, 197, 255);
+  border-right: 1px solid $primary;
+  .dark {
+    border-right: 1px solid rgb(0, 0, 0);
+  }
 }
 
 div.login-header, div.register-header {
-    height:10vh;
-    line-height:10vh;
-    font-size:22px;
-    text-align:center;
+  height:10vh;
+  line-height:10vh;
+  font-size:22px;
+  text-align:center;
+  .dark {
+    color: $text-light;
+  }
 }
 
 div.login-input-container {
@@ -93,55 +103,44 @@ div.login-submit-container {
 
 div.login-submit-button,
 div.register-submit-button {
-    height:50px;
-    width:150px;
-    border-radius:5px;
-    text-align:center;
-    line-height:50px;
-    cursor:pointer;
-    transition:all .1s ease-in-out;
+    height: 50px;
+    width: 150px;
+    border-radius: 5px;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+    transition: all .1s ease-in-out;
 }
 
 div.login-submit-button {
-    color:rgb(77, 102, 182);
-    border:1px solid rgb(77, 102, 182);
+    color: $primary;
+    border: 1px solid $primary;
 }
 
 div.register-submit-button {
-    color:rgb(77, 182, 108);
-    border:1px solid rgb(77, 182, 108);
+    color: $success;
+    border: 1px solid $success;
 }
 
 div.login-submit-button:hover {
-    background: rgb(77, 102, 182);
-    color:#fff;
+    background: $primary;
+    color: $ui-light;
 }
 
 div.register-submit-button:hover {
-    background: rgb(77, 182, 108);
-    color:#fff;
+    background: $success;
+    color: $ui-light;
 }
 
 div.login-error {
-    height:50px;
-    line-height:50px;
+    height: 50px;
+    line-height: 50px;
     text-align: center;
-    font-size:14px;
-    color:rgb(255, 108, 108);
+    font-size: 14px;
+    color: rgb(255, 108, 108);
 }
-
-.dark .login-container {
-    background:rgb(46, 45, 49);
-}
-
-.dark div.login {
-    border-right:1px solid rgb(0, 0, 0);
-}
-
-.dark div.login-header, .dark div.register-header {
-    color:#fff;
-}
-
+////////////////////////////////////////////////////////////////////////////////
+// TODO: Finish these such that they are nested in the relevant scopes
 .dark div.login-input-label-inner {
     color:rgb(146, 146, 146);
 }
@@ -176,7 +175,7 @@ div.login-error {
 }
 
 @media only screen and (max-height: 850px) {
-    
+
     div.login-input-label {
         height:25px;
         font-size:14px;
@@ -197,7 +196,7 @@ div.login-error {
     div.login-submit-container {
         margin-top:auto;
     }
-    
+
     div.login-submit-button,
     div.register-submit-button {
         height:30px;
@@ -205,7 +204,7 @@ div.login-error {
         width:100px;
         font-size:14px;
     }
-    
+
     div.login-error {
         height:40px;
         line-height:40px;
