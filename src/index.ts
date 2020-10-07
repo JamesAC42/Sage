@@ -9,7 +9,8 @@ import register  from './controllers/register';
 import getSession from './controllers/getSession';
 import destroySession from './controllers/destroySession';
 
-const conString = "postgres://postgres:admin@localhost:5432/sage";
+const auth = require('../auth.json');
+const conString = `postgres://${auth.username}:${auth.password}@localhost:5432/sage`;
 const client = new pg.Client(conString);
 client.connect();
 
