@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 
-import '../../css/profile.css';
+import '../../css/profile.scss';
 
 const mapStateToProps = (state:any, props:any) => ({
     session: state.session
