@@ -9,9 +9,8 @@ import register  from './controllers/register';
 import getSession from './controllers/getSession';
 import destroySession from './controllers/destroySession';
 
-import User from './User';
-
-const conString = "postgres://postgres:admin@localhost:5432/sage";
+const auth = require('../auth.json');
+const conString = `postgres://${auth.username}:${auth.password}@localhost:5432/sage`;
 const client = new pg.Client(conString);
 client.connect();
 
@@ -21,11 +20,11 @@ const redisClient = redis.createClient();
 const app = express();
 const port = 3500;
 
-let users: Array<User> = new Array<User>();
-
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+// Note: cookie must have attribute { secure: true }
+// in production
 app.use(session({
     secret: 'rpi1824',
     resave: true,
@@ -36,20 +35,16 @@ app.use(session({
 }));
 
 app.post('/api/login', (req: any, res: any) => {
-    login(req, res, users);
+    login(req, res, client);
 });
 
 app.post('/api/register', (req: any, res: any) => {
-    register(req, res, users);
+    register(req, res, client);
 });
 
-app.get('/api/getSession', (req: any, res: any) => {
-    getSession(req, res);
-});
+app.get('/api/getSession', getSession);
 
-app.get('/api/destroySession', (req: any, res: any) => {
-    destroySession(req, res);
-});
+app.get('/api/destroySession', destroySession);
 
 app.listen(port, () => {
     console.log(`Listening at port ${port}`);

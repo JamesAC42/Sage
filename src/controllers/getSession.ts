@@ -1,4 +1,4 @@
-function getSession(req: any, res:any) {
+const getSession = (req: any, res:any) => {
     
     console.log(`sessionID: ${req.session.id}`);
     console.log(`key: ${req.session.key}`);
