@@ -1,5 +1,5 @@
 import React, { Component, MouseEvent } from 'react';
-import "../../css/create.css";
+import "../../css/create.scss";
 
 import CreateInputRouter from './CreateInputRouter';
 
@@ -28,23 +28,23 @@ class Create extends Component {
     }
     activeTabClass = (i: number) => {
         if(i === this.state.active) {
-            return "tab-item tab-item-active";
+            return "vertical-tab vertical-tab-active";
         } else {
-            return "tab-item";
+            return "vertical-tab";
         }
     }
     render() {
         return(
-            <div className="create-outer">
-                <div className="create-header">Create a Dashboard</div>
-                <div className="create-content">
+            <div className="modal create-modal flex-col flex-stretch">
+                <div className="modal-header create-header">Create a Dashboard</div>
+                <div className="create-content flex-row flex-stretch">
                     <div className="create-dialogue">
                         <div className="create-dialogue-inner">
                             Provide data endpoints that will form the basis of your dashboard.
                             You can use REST APIs, GraphQL, ODATA, or RSS feeds.
                         </div>
                     </div>
-                    <div className="input-tab-outer">
+                    <div className="endpoint-type-select">
                         <div 
                             className={this.activeTabClass(0)}
                             onClick={(e:MouseEvent) => this.updateActive(0)}>Basic Web</div>
@@ -55,10 +55,10 @@ class Create extends Component {
                         <div className={this.activeTabClass(3)}
                             onClick={(e:MouseEvent) => this.updateActive(3)}>RSS</div>
                     </div>
-                    <div className="create-input-outer">
+                    <div className="create-input-outer flex-col flex-stretch">
                         <CreateInputRouter active={this.state.active}/>
                         <div className="submit-form-outer">
-                            <div className="submit-button">CREATE</div>
+                            <div className="button button-default submit-button">CREATE</div>
                         </div>
                     </div>
                 </div>

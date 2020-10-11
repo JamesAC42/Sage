@@ -202,32 +202,23 @@ class LoginBind extends Component<LoginProps> {
         }
         return(
             <div>
-                <div className="login-container">
-                    <div className="login">
-                        <div className="login-header">
-                            LOGIN
+                <div className="modal login-modal flex-row flex-stretch">
+                    <div className="login flex-col flex-stretch">
+                        <div className="modal-header login-header">
+                            Login
                         </div>
-                        <div className="login-input-container">
-                            <div className="login-input-label">
-                                <div className="login-input-label-inner">
-                                    Username
-                                </div>
-                            </div>
-
+                        <div className="login-input-container flex-col flex-stretch">
+                            
+                            <div className="input-label">Username</div>
                             <InputItem updateValue={this.updateLoginUsername} />
 
-                            <div className="login-input-label">
-                                <div className="login-input-label-inner">
-                                    Password
-                                </div>
-                            </div>
-
+                            <div className="input-label">Password</div>
                             <PasswordItem updateValue={this.updateLoginPassword} />
 
                         </div>
-                        <div className="login-submit-container">
+                        <div className="login-submit-container center-child">
                             <div
-                                className="login-submit-button"
+                                className="button button-success"
                                 onClick={this.login}>
                                 LOG IN
                             </div>
@@ -236,47 +227,28 @@ class LoginBind extends Component<LoginProps> {
                             {this.state.error.login}
                         </div>
                     </div>
-                    <div className="register">
-                        <div className="register-header">
-                            REGISTER
+                    <div className="register flex-col flex-stretch">
+                        <div className="modal-header register-header">
+                            Register
                         </div>
-                        <div className="login-input-container">
-                            <div className="login-input-label">
-                                <div className="login-input-label-inner">
-                                    Email Address
-                                </div>
-                            </div>
-
+                        <div className="login-input-container flex-col flex-stretch">
+                            
+                            <div className="input-label">Email Address</div>
                             <InputItem updateValue={this.updateRegisterEmail} />
 
-                            <div className="login-input-label">
-                                <div className="login-input-label-inner">
-                                    Username
-                                </div>
-                            </div>
-
+                            <div className="input-label">Username</div>
                             <InputItem updateValue={this.updateRegisterUsername} />
 
-                            <div className="login-input-label">
-                                <div className="login-input-label-inner">
-                                    Password
-                                </div>
-                            </div>
-
+                            <div className="input-label">Password</div>
                             <PasswordItem updateValue={this.updateRegisterPassword} />
 
-                            <div className="login-input-label">
-                                <div className="login-input-label-inner">
-                                    Confirm Password
-                                </div>
-                            </div>
-
+                            <div className="input-label">Confirm Password</div>
                             <PasswordItem updateValue={this.updateRegisterPasswordConfirm} />
 
                         </div>
-                        <div className="login-submit-container">
+                        <div className="login-submit-container center-child">
                             <div
-                                className="register-submit-button"
+                                className="button button-default"
                                 onClick={this.register}>
                                 REGISTER
                             </div>

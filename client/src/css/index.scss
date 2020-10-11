@@ -16,7 +16,10 @@ body {
   top:50%;
   left:50%;
   transform:translate(-50%, -50%) rotate(45deg);
-  background: $primary;
+  background: $contrast;
+  .dark & {
+    background: $contrast-dark;
+  }
 }
 
 .dark {
@@ -25,9 +28,5 @@ body {
   position:fixed;
   top:0;
   left:0;
-  background:rgb(56, 56, 56);
-
-  .background {
-    background:rgb(27, 27, 27);
-  }
+  background:$ui-dark;
 }
