@@ -55,12 +55,7 @@ class Create extends Component {
                         <div className={this.activeTabClass(3)}
                             onClick={(e:MouseEvent) => this.updateActive(3)}>RSS</div>
                     </div>
-                    <div className="create-input-outer flex-col flex-stretch">
-                        <CreateInputRouter active={this.state.active}/>
-                        <div className="submit-form-outer">
-                            <div className="button button-default submit-button">CREATE</div>
-                        </div>
-                    </div>
+                    <CreateInputRouter active={this.state.active}/>
                 </div>
             </div>
         )
