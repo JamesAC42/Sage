@@ -1,33 +1,50 @@
-import User from "../User";
 const bcrypt = require('bcrypt');
+import userQueries from '../queries/userQueries';
 
-const Login = (req: any, res: any, users:Array<User>) => {
+const Login = (req: any, res: any, db: any) => {
     const { 
         username,
         password
     } = req.body;
-    const u:User | undefined = 
-        users.find(user => user.username === username);
-    if(u === undefined) {
-        res.send({
-            success:false,
-            error: 'User not found'
-        });
-        return;
+
+    const query = {
+        name: 'find-user',
+        text: userQueries.findUser,
+        values: [username]
     }
-    bcrypt.compare(password, u.password, (err:any, result:any) => {
-        if(result) {
-            req.session.key = u.id;
-            res.send({
-                success:true
-            })
-        } else {
+
+    db.query(query)
+        .then((r: any) => {
+            if(r.rows.length === 0) {
+                console.log(r.rows);
+                res.send({
+                    success:false,
+                    error: 'User does not exist'
+                });
+            } else {
+                const pw = r.rows[0].password;
+                bcrypt.compare(password, pw, (err:any, result:boolean) => {
+                    if(result) {
+                        req.session.key = r.rows[0].id
+                        res.send({
+                            success:true
+                        });
+                    } else {
+                        res.send({
+                            success:false,
+                            error: 'Password was incorrect'
+                        })
+                    }
+                })
+            }
+        })
+        .catch((e: any) => {
+            console.log(e);
             res.send({
                 success:false,
-                error: 'Username or password was incorrect'
+                error: 'User does not exist'
             })
-        }
-    })
+        })
 }
 
 export default Login;

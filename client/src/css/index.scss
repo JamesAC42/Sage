@@ -1,6 +1,8 @@
+@import 'settings.scss';
+
 @font-face {
   font-family: Syne;
-  src: url("./fonts/Syne-Regular.ttf");
+  src: url("../fonts/Syne-Regular.ttf");
 }
 
 body {
@@ -14,7 +16,10 @@ body {
   top:50%;
   left:50%;
   transform:translate(-50%, -50%) rotate(45deg);
-  background:rgb(137, 156, 243);
+  background: $contrast;
+  .dark & {
+    background: $contrast-dark;
+  }
 }
 
 .dark {
@@ -23,9 +28,5 @@ body {
   position:fixed;
   top:0;
   left:0;
-  background:rgb(56, 56, 56);
-}
-
-.dark .background {
-  background:rgb(27, 27, 27);
+  background:$ui-dark;
 }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../../css/login.css';
+import '../../css/login.scss';
 import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
 
@@ -24,6 +24,8 @@ const mapDispatchToProps = {
     login: sessionActions.login
 }
 
+type formEvent = React.ChangeEvent<HTMLInputElement>;
+
 class LoginBind extends Component<LoginProps> {
 
     state: LoginState;
@@ -32,64 +34,29 @@ class LoginBind extends Component<LoginProps> {
         this.state = new LoginState();
     }
 
-    updateLoginUsername = (a:string) => {
+    updateLoginValues = (a:formEvent) => {
         this.setState({
             ...this.state,
             login: {
                 ...this.state.login,
-                username: a
+                [a.target.name] : a.target.value
             }
         });
     }
-    updateLoginPassword = (a:string) => {
-        this.setState({
-            ...this.state,
-            login: {
-                ...this.state.login,
-                password: a
-            }
-        });
-    }
-    updateRegisterEmail = (a:string) => {
+
+    updateRegisterValues = (a:formEvent) => {
         this.setState({
             ...this.state,
             register: {
                 ...this.state.register,
-                email: a
-            }
-        });
-    }
-    updateRegisterUsername = (a:string) => {
-        this.setState({
-            ...this.state,
-            register: {
-                ...this.state.register,
-                username: a
-            }
-        });
-    }
-    updateRegisterPassword = (a:string) => {
-        this.setState({
-            ...this.state,
-            register: {
-                ...this.state.register,
-                password: a
-            }
-        });
-    }
-    updateRegisterPasswordConfirm = (a:string) => {
-        this.setState({
-            ...this.state,
-            register: {
-                ...this.state.register,
-                passwordConfirm: a
+                [a.target.name] : a.target.value
             }
         });
     }
 
     login = () => {
-        if( 
-            this.state.login.username === '' || 
+        if(
+            this.state.login.username === '' ||
             this.state.login.password === '') {
             this.setState({
                 ...this.state,
@@ -127,6 +94,7 @@ class LoginBind extends Component<LoginProps> {
             console.error('Error: ' +  error);
         })
     }
+
     register = () => {
         if(
             this.state.register.email === '' ||
@@ -193,6 +161,7 @@ class LoginBind extends Component<LoginProps> {
             console.error('Error: ' +  error);
         })
     }
+
     render() {
         if(this.props.session.loggedin === undefined) return null;
         if(this.props.session.loggedin) {
@@ -202,32 +171,31 @@ class LoginBind extends Component<LoginProps> {
         }
         return(
             <div>
-                <div className="login-container">
-                    <div className="login">
-                        <div className="login-header">
-                            LOGIN
+                <div className="modal login-modal flex-row flex-stretch">
+                    <div className="login flex-col flex-stretch">
+                        <div className="modal-header login-header">
+                            Login
                         </div>
-                        <div className="login-input-container">
-                            <div className="login-input-label">
-                                <div className="login-input-label-inner">
-                                    Username
-                                </div>
-                            </div>
+                        <div className="login-input-container flex-col flex-stretch">
                             
-                            <InputItem updateValue={this.updateLoginUsername} />
+                            <div className="input-label">Username</div>
+                            <InputItem 
+                                value={this.state.login.username} 
+                                maxLength={50}
+                                name={"username"}
+                                updateValue={this.updateLoginValues} />
 
-                            <div className="login-input-label">
-                                <div className="login-input-label-inner">
-                                    Password
-                                </div>
-                            </div>
-                            
-                            <PasswordItem updateValue={this.updateLoginPassword} />
+                            <div className="input-label">Password</div>
+                            <PasswordItem 
+                                value={this.state.login.password}
+                                maxLength={200}
+                                name={"password"}
+                                updateValue={this.updateLoginValues} />
 
                         </div>
-                        <div className="login-submit-container">
-                            <div 
-                                className="login-submit-button"
+                        <div className="login-submit-container center-child">
+                            <div
+                                className="button button-success"
                                 onClick={this.login}>
                                 LOG IN
                             </div>
@@ -236,47 +204,44 @@ class LoginBind extends Component<LoginProps> {
                             {this.state.error.login}
                         </div>
                     </div>
-                    <div className="register">
-                        <div className="register-header">
-                            REGISTER
+                    <div className="register flex-col flex-stretch">
+                        <div className="modal-header register-header">
+                            Register
                         </div>
-                        <div className="login-input-container">
-                            <div className="login-input-label">
-                                <div className="login-input-label-inner">
-                                    Email Address
-                                </div>
-                            </div>
-
-                            <InputItem updateValue={this.updateRegisterEmail} />
-
-                            <div className="login-input-label">
-                                <div className="login-input-label-inner">
-                                    Username
-                                </div>
-                            </div>
-
-                            <InputItem updateValue={this.updateRegisterUsername} />
-
-                            <div className="login-input-label">
-                                <div className="login-input-label-inner">
-                                    Password
-                                </div>
-                            </div>
-
-                            <PasswordItem updateValue={this.updateRegisterPassword} />
-
-                            <div className="login-input-label">
-                                <div className="login-input-label-inner">
-                                    Confirm Password
-                                </div>
-                            </div>
+                        <div className="login-input-container flex-col flex-stretch">
                             
-                            <PasswordItem updateValue={this.updateRegisterPasswordConfirm} />
+                            <div className="input-label">Email Address</div>
+                            <InputItem 
+                                value={this.state.register.email} 
+                                maxLength={250} 
+                                name={"email"}
+                                updateValue={this.updateRegisterValues} />
+
+                            <div className="input-label">Username</div>
+                            <InputItem 
+                                value={this.state.register.username}
+                                maxLength={50}
+                                name={"username"}
+                                updateValue={this.updateRegisterValues} />
+
+                            <div className="input-label">Password</div>
+                            <PasswordItem
+                                value={this.state.register.password} 
+                                maxLength={200}
+                                name={"password"}
+                                updateValue={this.updateRegisterValues} />
+
+                            <div className="input-label">Confirm Password</div>
+                            <PasswordItem
+                                value={this.state.register.passwordConfirm} 
+                                maxLength={200}
+                                name={"passwordConfirm"}
+                                updateValue={this.updateRegisterValues} />
 
                         </div>
-                        <div className="login-submit-container">
-                            <div 
-                                className="register-submit-button"
+                        <div className="login-submit-container center-child">
+                            <div
+                                className="button button-default"
                                 onClick={this.register}>
                                 REGISTER
                             </div>

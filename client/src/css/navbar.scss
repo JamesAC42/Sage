@@ -1,0 +1,51 @@
+@import 'settings.scss';
+
+.navbar {
+    position:fixed;
+    display:flex;
+    justify-content:flex-end;
+    flex-direction: row;
+    align-items: stretch;
+    top:0;
+    left:0;
+    background: $ui-light;
+    height:80px;
+    width:100vw;
+    margin:0;
+    padding:0;
+    box-shadow: 0px 7px 32px -14px rgba(0,0,0,0.75);
+    z-index:1000;
+
+    .dark & {
+        background: $ui-dark;
+    }
+
+    .nav-item {
+        line-height: 80px;
+        padding: 0 30px;
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        a {
+            text-decoration: none;
+            color: $text-dark;
+            .dark & {
+              color: $text-light;
+            }
+        }
+    }
+    .nav-title {
+      font-size: 22px;
+      margin-right: auto;
+    }
+}
+
+img.darkmode-img {
+    height: 35px;
+    cursor: pointer;
+    transition: opacity .1s ease-in-out;
+    :hover {
+      opacity: 0.5;
+    }
+}

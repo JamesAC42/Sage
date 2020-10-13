@@ -8,6 +8,8 @@ import Logout from './components/Logout';
 import Create from './components/Create';
 import Navbar from './components/Navbar';
 
+import '../css/master.scss';
+
 import SessionHandler from './components/SessionHandler';
 
 import { connect } from 'react-redux';

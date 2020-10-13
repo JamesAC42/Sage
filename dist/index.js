@@ -12,16 +12,18 @@ var login_1 = __importDefault(require("./controllers/login"));
 var register_1 = __importDefault(require("./controllers/register"));
 var getSession_1 = __importDefault(require("./controllers/getSession"));
 var destroySession_1 = __importDefault(require("./controllers/destroySession"));
-var conString = "postgres://postgres:admin@localhost:5432/holocoin";
+var auth = require('../auth.json');
+var conString = "postgres://" + auth.username + ":" + auth.password + "@localhost:5432/sage";
 var client = new pg.Client(conString);
 client.connect();
 var RedisStore = require('connect-redis')(session);
 var redisClient = redis.createClient();
 var app = express();
 var port = 3500;
-var users = new Array();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+// Note: cookie must have attribute { secure: true }
+// in production
 app.use(session({
     secret: 'rpi1824',
     resave: true,
@@ -31,17 +33,13 @@ app.use(session({
     store: new RedisStore({ client: redisClient })
 }));
 app.post('/api/login', function (req, res) {
-    login_1.default(req, res, users);
+    login_1.default(req, res, client);
 });
 app.post('/api/register', function (req, res) {
-    register_1.default(req, res, users);
+    register_1.default(req, res, client);
 });
-app.get('/api/getSession', function (req, res) {
-    getSession_1.default(req, res);
-});
-app.get('/api/destroySession', function (req, res) {
-    destroySession_1.default(req, res);
-});
+app.get('/api/getSession', getSession_1.default);
+app.get('/api/destroySession', destroySession_1.default);
 app.listen(port, function () {
     console.log("Listening at port " + port);
 });

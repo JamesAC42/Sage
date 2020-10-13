@@ -1,13 +1,15 @@
+@import 'settings.scss';
+
 .profile-outer {
     position:fixed;
     height:100vh;
     width:100vw;
-    background:rgb(255, 255, 255);
+    background: $ui-light;
     top:0;
     left:0;
     transform:translateY(80px);
-}
-
-.dark .profile-outer {
-    background:rgb(54, 54, 54);
+    
+    .dark & {
+        background: $ui-dark;
+    }
 }

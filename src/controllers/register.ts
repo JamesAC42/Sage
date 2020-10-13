@@ -1,16 +1,18 @@
+const bcrypt = require('bcrypt');
 const { v4: uuid } = require('uuid');
 
-import User from "../User";
-import validateEmail from "../validateEmail"
-const bcrypt = require('bcrypt');
+import validateEmail from '../validateEmail';
+import userQueries from '../queries/userQueries';
 
-const Register = (req: any, res: any, users:Array<User>) => {
+const register = (req: any, res: any, db: any) => {
+
     const { 
         username,
         email,
         password,
         passwordConfirm
     } = req.body;
+
     if(password !== passwordConfirm) {
         res.send({
             success:false,
@@ -25,35 +27,94 @@ const Register = (req: any, res: any, users:Array<User>) => {
         });
         return;
     }
-    if(users.find(user => user.email === email)) {
-        res.send({
-            success:false,
-            error: 'Account with that email already exists'
-        });
-        return;
+
+    const findQuery = {
+        name: 'find-user',
+        text: userQueries.findUser,
+        values: [username]
     }
-    if(users.find(user => user.username === username)) {
-        res.send({
-            success:false,
-            error: 'Account with that username already exists'
-        });
-        return;
+
+    const findEmailQuery = {
+        name: 'find-email',
+        text: userQueries.findEmail,
+        values: [email]
     }
-    bcrypt.genSalt(10, (err:any, salt:any) => {
-        bcrypt.hash(password, salt, (err:any, hash:any) => {
-            const user:User = new User(
-                uuid(),
-                username,
-                hash,
-                email
-            );
-            users.push(user);
-            req.session.key = user.id;
-            res.send({
-                success:true
-            });
+
+    db.query(findQuery)
+        .then((r: any) => {
+            if(r.rows.length > 0) {
+                res.send({
+                    success:false,
+                    error: 'Account with that username already exists.'
+                });
+                return;
+            }
+            db.query(findEmailQuery)
+            .then((r: any) => {
+                if(r.rows.length > 0) {
+                    res.send({
+                        success:false,
+                        error: 'Account with that email already exists.'
+                    });
+                    return;
+                }
+            })
+            .catch((err: any) => {
+                console.log('FIND EMAIL');
+                console.log(err);
+                res.send({
+                    success:false,
+                    error: 'Error processing input'
+                });
+                return;
+            })
+    
+            bcrypt.genSalt(10, (err:any, salt:any) => {
+                bcrypt.hash(password, salt, (err:any, hash:any) => {
+        
+                    const id = uuid();  
+                    const insertQuery = {
+                        name: 'create-user',
+                        text: userQueries.createUser,
+                        values: [
+                            id,
+                            username,
+                            hash,
+                            email,
+                            new Date(),
+                            0
+                        ]
+                    }
+        
+                    db.query(insertQuery)
+                        .then((r: any) => {
+                            req.session.key = id;
+                            res.send({
+                                success:true
+                            })
+                        })
+                        .catch((err: any) => {
+                            console.log(err);
+                            res.send({
+                                success:false,
+                                error: 'Error creating user'
+                            });
+                            return;
+                        });
+                })
+            })
         })
-    })
+        .catch((err: any) => {
+            console.log('FIND USER');
+            console.log(err);
+            res.send({
+                success:false,
+                error: 'Error processing input'
+            })
+            return;
+        })
+
+   
 }
 
-export default Register;
+export default register;

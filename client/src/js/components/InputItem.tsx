@@ -1,20 +1,24 @@
 import React, { Component } from 'react';
 
 interface UpdateProps {
-    updateValue: (value:string) => void
+    maxLength: number,
+    value: string,
+    name: string,
+    updateValue: (e:React.ChangeEvent<HTMLInputElement>) => void
 }
 
 export class InputItem extends Component<UpdateProps> {
     render() {
         return(
-            <div className="login-input-item">
                 <input 
-                    type="text" 
-                    maxLength={50}
+                    className="text-input"
+                    type="text"
+                    name={this.props.name}
+                    maxLength={this.props.maxLength}
+                    value={this.props.value}
                     onChange={(
                         ev: React.ChangeEvent<HTMLInputElement>,
-                    ): void => this.props.updateValue(ev.target.value)}/>
-            </div>
+                    ): void => this.props.updateValue(ev)}/>
         )
     }
 }
@@ -22,14 +26,15 @@ export class InputItem extends Component<UpdateProps> {
 export class PasswordItem extends Component<UpdateProps> {
     render() {
         return(
-            <div className="login-input-item">
                 <input 
+                    className="text-input"
                     type="password" 
-                    maxLength={50}
+                    name={this.props.name}
+                    maxLength={this.props.maxLength}
+                    value={this.props.value}
                     onChange={(
                         ev: React.ChangeEvent<HTMLInputElement>,
-                    ): void => this.props.updateValue(ev.target.value)}/>
-            </div>
+                    ): void => this.props.updateValue(ev)}/>
         )
     }
 }

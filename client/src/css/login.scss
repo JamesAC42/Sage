@@ -1,0 +1,57 @@
+@import 'settings.scss';
+
+.login-modal {
+  height: 60vh;
+  width: 60vw;
+  justify-content: center;
+}
+
+div.login, div.register {
+  flex: 1;
+  justify-content: center;
+}
+
+div.login {
+  border-right: 2px solid $contrast;
+  .dark & {
+    border-right: 2px solid $contrast-dark;
+  }
+}
+
+div.login-header, div.register-header {
+  height: 10vh;
+  line-height: 10vh;
+  text-align: center;
+}
+
+div.login-input-container {
+  height: 30vh;
+  justify-content: center;
+  padding:0 50px;
+}
+
+div.login-submit-container {
+  height: 10vh;
+  
+  @media only screen and (max-height: $medium-height) {
+    margin-top: auto;
+  }
+}
+
+div.login-error {
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  font-size: 16px;
+  color: $error;
+
+  .dark & {
+    color: $error-dark;
+  }
+
+  @media only screen and (max-height: $medium-height) {
+    height: 40px;
+    line-height: 40px;
+    margin-top: 0;
+  }
+}
