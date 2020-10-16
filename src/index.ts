@@ -8,6 +8,7 @@ import login from './controllers/login';
 import register  from './controllers/register';
 import getSession from './controllers/getSession';
 import destroySession from './controllers/destroySession';
+import createDashboard from './controllers/createDashboard';
 
 const auth = require('../auth.json');
 const conString = `postgres://${auth.username}:${auth.password}@localhost:5432/sage`;
@@ -40,6 +41,10 @@ app.post('/api/login', (req: any, res: any) => {
 
 app.post('/api/register', (req: any, res: any) => {
     register(req, res, client);
+});
+
+app.post('/api/createDashboard', (req: any, res: any) => {
+    createDashboard(req, res, client);
 });
 
 app.get('/api/getSession', getSession);

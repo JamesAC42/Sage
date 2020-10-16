@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router';
+import { textChangeRangeIsUnchanged } from 'typescript';
+
+import validateUrl from '../validateUrl';
 
 import { InputItem } from './InputItem';
 import {
@@ -169,12 +173,23 @@ interface CreateInputRouterProps {
     active:number
 }
 
+interface formData {
+    url:string,
+    [key: string]: any
+}
+
 class CreateInputRouterState {
     type:number;
-    formValues: {};
+    formValues: formData;
+    error:boolean;
+    errorMessage:string;
+    redirect: string
     constructor() {
         this.type = 0;
-        this.formValues = {};
+        this.formValues = {url: ''};
+        this.error = false;
+        this.errorMessage = '';
+        this.redirect = '';
     }
 }
 
@@ -190,11 +205,40 @@ class CreateInputRouter extends Component<CreateInputRouterProps> {
     updateForm(values:{}) {
         this.setState({
             type: this.props.active,
-            formValues: values
-        });
+            formValues: values,
+        });   
     }
     submitForm() {
-        //console.log(this.state);
+        if(this.state.formValues.url === '') {
+            this.setState({
+                error:true,
+                errorMessage: 'Cannot have blank URL'
+            });
+        } else {
+            if(!validateUrl(this.state.formValues.url)) {
+                this.setState({
+                    error:true,
+                    errorMessage: 'Invalid URL'
+                })
+            } else {
+                const formData = {...this.state.formValues};
+                fetch('/api/createDashboard', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        data: formData
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    this.setState({
+                        redirect:data.id
+                    })
+                })
+            }
+        }
     }
     activeInput() {
         switch(this.props.active) {
@@ -211,10 +255,19 @@ class CreateInputRouter extends Component<CreateInputRouterProps> {
         }
     }
     render() {
+        if(this.state.redirect !== '') {
+            const url = `/edit/${this.state.redirect}`;
+            return(
+                <Redirect to={url} />
+            )
+        }
         return(
         <div className="create-input-outer flex-col flex-stretch">
             { this.activeInput() }
             <div className="submit-form-outer">
+                <div className="create-error">
+                    {this.state.errorMessage}
+                </div>
                 <div 
                     className="button button-default submit-button"
                     onClick={this.submitForm}>CREATE</div>

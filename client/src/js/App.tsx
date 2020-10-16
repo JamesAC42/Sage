@@ -7,6 +7,7 @@ import Login from './components/Login';
 import Logout from './components/Logout';
 import Create from './components/Create';
 import Navbar from './components/Navbar';
+import Edit from './components/Edit';
 
 import '../css/master.scss';
 
@@ -74,6 +75,11 @@ class AppBind extends Component<AppProps> {
             exact
             path="/logout"
             component={Logout}/>
+
+          <Route
+            exact
+            path="/edit/:id"
+            component={Edit}/>
 
         </Switch>
 
