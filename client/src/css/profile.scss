@@ -7,8 +7,8 @@
     background: $ui-light;
     top:0;
     left:0;
-    transform:translateY(80px);
-    
+    transform:translateY($nav-height);
+
     .dark & {
         background: $ui-dark;
     }

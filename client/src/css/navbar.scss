@@ -9,7 +9,7 @@
     top:0;
     left:0;
     background: $ui-light;
-    height:80px;
+    height: $nav-height;
     width:100vw;
     margin:0;
     padding:0;
@@ -21,7 +21,7 @@
     }
 
     .nav-item {
-        line-height: 80px;
+        line-height: $nav-height;
         padding: 0 30px;
         font-size: 18px;
         display: flex;
@@ -42,7 +42,7 @@
 }
 
 img.darkmode-img {
-    height: 35px;
+    height: 35px; // Does this need to be converted to rem?
     cursor: pointer;
     transition: opacity .1s ease-in-out;
     :hover {
