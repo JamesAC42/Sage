@@ -181,6 +181,25 @@ input.text-input {
     }
 }
 
+
+.container {
+  position: fixed;
+  overflow-y: scroll;
+
+  top: 0; // Necessary to remove the default padding added by many browsers
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  padding-top: $nav-height;
+
+  background-color: $ui-light;
+  .dark & {
+    background-color: $ui-dark;
+  }
+}
+
+
 .vertical-tab {
     height:50px;
     line-height:50px;
