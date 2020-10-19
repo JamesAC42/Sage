@@ -6,9 +6,6 @@ $ui-subtle: rgb(211, 211, 211);
 $ui-dark: rgb(46, 45, 49);
 $ui-dark-subtle: rgb(77, 77, 77);
 
-// $background-light: rgb(255, 255, 255);
-// $background-dark: rgb(39, 39, 39);
-
 $text-light: rgb(255, 255, 255);
 $text-subtle:rgb(71, 71, 71);
 $text-dark: rgb(0, 0, 0);
@@ -32,10 +29,12 @@ $active-dark: rgb(205, 191, 255);
 $error: rgb(255, 108, 108);
 $error-dark: rgb(255, 130, 130);
 
-$medium-height: 850px;
+$shadow-color: rgba(0,0,0,0.75);
 
 
 ///////// SIZES ////////////////////////////////////////////////////////////////
 $standard-gutter: 1.5rem;
 
 $nav-height: 5rem; // Height of the navbar
+
+$medium-height: 850px;
