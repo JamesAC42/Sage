@@ -157,7 +157,7 @@ input.text-input {
   left:50%;
   transform:translate(-50%, -50%);
   background:$ui-light;
-  border-radius: 10px;
+  border-radius: 0.5rem;
   box-shadow: 0px 10px 23px -8px $shadow-color;
 
   .dark & {
@@ -182,26 +182,60 @@ input.text-input {
 
 
 .container {
-  position: fixed;
-  overflow-y: scroll;
+  position: absolute;
+  top: $nav-height + $standard-gutter; // Necessary to remove the default padding added by many browsers
+  width: 80%;
 
-  top: 0; // Necessary to remove the default padding added by many browsers
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  left:50%; // Center the container
+  transform: translate(-50%);
+  height: calc(100vh - $nav-height - $standard-gutter);
 
-  padding-top: $nav-height ;
+  margin-bottom: $standard-gutter; // A little bit of space between the container and the bottom of the page
+
+  border-radius: $standard-gutter;
+  box-shadow: 0 0 1rem 0.1rem rgba(0,0,0,0.1); // Just the slightest of shadows
 
   background-color: $ui-light;
   .dark & {
     background-color: $ui-dark;
   }
+}
 
-  &.guttered { // Add these selectors if this element also has the .guttered class
-    // Use percents so that it is reusable in many situations, including if the container isn't as wide as the page
-    width: 80%;
-    left:50%; // Center the container
-    transform: translate(-50%);
+
+.card {
+  padding: $standard-gutter;
+  margin: $standard-gutter;
+
+  border-radius: 0.5rem;
+  border: 0.2px solid $contrast;
+
+  background-color: $ui-light;
+  color: $text-dark;
+  .dark & {
+    background-color: $ui-dark;
+    color: $text-light;
+  }
+}
+
+
+.card-deck {
+  display: flex;
+  justify-content: space-between;
+  &.two-cols > * {
+    width: 50%;
+  }
+  &.three-cols > * {
+    width: 33.33%;
+  }
+  &.four-cols > * {
+    width: 25%;
+  }
+  &.five-cols > * {
+    width: 20%;
+  }
+
+  .card + .card { // If the previous element was a card in a deck (which means that it has a margin), apply no left margin
+    margin-left: 0;
   }
 }
 
