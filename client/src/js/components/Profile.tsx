@@ -22,7 +22,59 @@ class ProfileBind extends Component<ProfileProps> {
             )
         }
         return(
-            <div className="profile-outer"></div>
+          <div>
+            <div className="container">
+              <div className="unbordered card">
+                <span className="container-heading">Insert Name </span>
+                <span className="container-heading-subtle"> @username</span>
+              </div>
+
+              <div className="card">
+                <div className="card-header">Account</div>
+                <div className="card-body">test</div>
+              </div>
+
+              <div className="unbordered card">
+                <div className="card-header favorites">
+                  Favorites:
+                  <div className="favorites-link">
+                    <a href="/link/to/favorites/page">All Favorites &gt; </a>
+                  </div>
+                </div>
+              </div>
+
+              <div className="card-deck four-cols">
+                <div className="card">
+                  <img className="preview" src="https://via.placeholder.com/150"></img>
+                  <div className="card-header">Project 1</div>
+                  <div className="card-body">test</div>
+                </div>
+                <div className="card">
+                  <div className="card-header">Project 2</div>
+                  <div className="card-body">test</div>
+                </div>
+                <div className="card">
+                  <div className="card-header">Project 3</div>
+                  <div className="card-body">test</div>
+                </div>
+                <div className="card">
+                  <div className="card-header">Project 4</div>
+                  <div className="card-body">test</div>
+                </div>
+              </div>
+
+              <div className="unbordered card">
+                <div className="card-header">
+                  Dashboards:
+                </div>
+              </div>
+
+              <div className="card">
+                <div className="card-header">Project 4</div>
+                <div className="card-body">test</div>
+              </div>
+            </div>
+          </div>
         )
     }
 }

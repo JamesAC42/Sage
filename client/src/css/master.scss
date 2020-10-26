@@ -1,5 +1,15 @@
 @import 'settings.scss';
 
+
+a {
+  text-decoration: none;
+  color: $link;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
 .flex-col {
   display:flex;
   flex-direction:column;

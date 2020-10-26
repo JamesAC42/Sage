@@ -1,1 +1,17 @@
 @import 'settings.scss';
+
+.favorites {
+  display: flex;
+}
+
+.favorites-link {
+  margin-left: auto;
+  font-size: 1rem;
+  align-self: center;
+}
+
+
+.preview {
+  width: 100%;
+  box-sizing: border-box;
+}
