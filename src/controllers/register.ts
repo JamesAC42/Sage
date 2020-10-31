@@ -91,7 +91,8 @@ const register = (req: any, res: any, db: any) => {
                             req.session.key = id;
                             res.send({
                                 success:true
-                            })
+                            });
+                            return;
                         })
                         .catch((err: any) => {
                             console.log(err);

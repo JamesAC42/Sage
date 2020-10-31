@@ -9,6 +9,9 @@ import register  from './controllers/register';
 import getSession from './controllers/getSession';
 import destroySession from './controllers/destroySession';
 import createDashboard from './controllers/createDashboard';
+import getDashboard from './controllers/getDashboard';
+import getDashboards from './controllers/getDashboards';
+import getData from './controllers/getData';
 
 const auth = require('../auth.json');
 const conString = `postgres://${auth.username}:${auth.password}@localhost:5432/sage`;
@@ -44,12 +47,24 @@ app.post('/api/register', (req: any, res: any) => {
 });
 
 app.post('/api/createDashboard', (req: any, res: any) => {
-    createDashboard(req, res, client);
+    createDashboard(req, res, client, redisClient);
 });
 
 app.get('/api/getSession', getSession);
 
 app.get('/api/destroySession', destroySession);
+
+app.get('/api/getDashboards', (req: any, res: any) => {
+    getDashboards(req, res, client);
+});
+
+app.get('/api/getDashboard', (req: any, res: any) => {
+    getDashboard(req, res, client, redisClient);
+});
+
+app.get('/api/getData', (req: any, res: any) => {
+    getData(req, res, redisClient);
+});
 
 app.listen(port, () => {
     console.log(`Listening at port ${port}`);
