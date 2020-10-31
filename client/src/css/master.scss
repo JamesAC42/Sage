@@ -180,7 +180,6 @@ input.text-input {
   }
 }
 
-
 .container {
   position: absolute;
   top: $nav-height + $standard-gutter; // Necessary to remove the default padding added by many browsers
@@ -188,7 +187,7 @@ input.text-input {
 
   left:50%; // Center the container
   transform: translate(-50%);
-  height: calc(100vh - $nav-height - $standard-gutter);
+  height: calc(100vh - #{$nav-height} - #{$standard-gutter});
 
   margin-bottom: $standard-gutter; // A little bit of space between the container and the bottom of the page
 
@@ -199,8 +198,28 @@ input.text-input {
   .dark & {
     background-color: $ui-dark;
   }
+  &.container-fill {
+    width:100%;
+    top:$nav-height;
+    border-radius: 0;
+    height: calc(100vh - #{$nav-height});
+  }
 }
 
+.container-header {
+  width:calc(100% - 60px);
+  height:100px;
+  line-height:150px;
+  font-size:30px;
+  color:$text-dark;
+  padding:0 30px;
+  border-bottom:1px solid $ui-subtle;
+  font-family: 'Syne-Medium';
+  .dark & {
+    color:$text-light;
+    border-color:$ui-dark-subtle;
+  }
+}
 
 .card {
   padding: $standard-gutter;
@@ -214,6 +233,9 @@ input.text-input {
   .dark & {
     background-color: $ui-dark;
     color: $text-light;
+  }
+  & > a {
+    color: $contrast;
   }
 }
 
@@ -237,6 +259,14 @@ input.text-input {
   .card + .card { // If the previous element was a card in a deck (which means that it has a margin), apply no left margin
     margin-left: 0;
   }
+}
+
+.card-list {
+  display:flex;
+  width:100%;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction:row;
 }
 
 

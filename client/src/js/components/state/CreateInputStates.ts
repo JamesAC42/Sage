@@ -1,14 +1,17 @@
 interface IODATAInputState {
+    title: string,
     url: string,
     oauth: string,
     parameters: string
 }
 
 export class ODATAInputState implements IODATAInputState {
+    title: string;
     url:string;
     oauth:string;
     parameters:string;
     constructor() {
+        this.title = '';
         this.url = '';
         this.oauth = '';
         this.parameters = '';
@@ -16,51 +19,57 @@ export class ODATAInputState implements IODATAInputState {
 }
 
 interface IGraphQLInputState {
+    title: string,
     url: string,
     username: string,
     password: string,
-    parameter1: string,
-    parameter2: string
+    parameters: string
 }
 
 export class GraphQLInputState implements IGraphQLInputState {
+    title: string;
     url: string;
     username: string;
     password: string;
-    parameter1: string;
-    parameter2: string;
+    parameters: string;
     constructor() {
+        this.title = '';
         this.url = '';
         this.username = '';
         this.password = '';
-        this.parameter1 = '';
-        this.parameter2 = '';
+        this.parameters = '';
     }
 }
 
 interface IRSSInputState {
+    title: string,
     url: string,
     key: string
 }
 
 export class RSSInputState implements IRSSInputState {
+    title: string;
     url: string;
     key: string;
     constructor() {
+        this.title = '';
         this.url = '';
         this.key = '';
     }
 }
 
 interface IBasicWebInputState {
+    title: string;
     url: string,
     parameters: string
 }
 
 export class BasicWebInputState implements IBasicWebInputState {
+    title: string;
     url:string;
     parameters:string;
     constructor() {
+        this.title = '';
         this.url = '';
         this.parameters = '';
     }

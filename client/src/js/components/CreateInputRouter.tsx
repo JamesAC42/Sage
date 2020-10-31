@@ -34,7 +34,15 @@ class ODATAInput extends CreateInput {
     render() {
         return(
             <div className="create-input-inner flex-col flex-stretch">
+                
                 <div className="input-header">ODATA</div>
+
+                <div className="input-label">Dashboard Title</div>
+                <InputItem
+                    value={this.state.title}
+                    maxLength={2000}
+                    name={"title"}
+                    updateValue={this.updateFormValues} />
 
                 <div className="input-label">URL</div>
                 <InputItem
@@ -50,7 +58,7 @@ class ODATAInput extends CreateInput {
                     name={"oauth"}
                     updateValue={this.updateFormValues} />
 
-                <div className="input-label">Parameter String</div>
+                <div className="input-label">Parameters</div>
                 <InputItem
                     value={this.state.parameters}
                     maxLength={250}
@@ -71,6 +79,13 @@ class GraphQLInput extends CreateInput {
         return(
             <div className="create-input-inner flex-col flex-stretch">
                 <div className="input-header">GraphQL</div>
+                
+                <div className="input-label">Dashboard Title</div>
+                <InputItem
+                    value={this.state.title}
+                    maxLength={2000}
+                    name={"title"}
+                    updateValue={this.updateFormValues} />
 
                 <div className="input-label">URL</div>
                 <InputItem
@@ -93,18 +108,11 @@ class GraphQLInput extends CreateInput {
                     name={"password"}
                     updateValue={this.updateFormValues}/>
 
-                <div className="input-label">Parameter 1</div>
+                <div className="input-label">Parameters</div>
                 <InputItem
-                    value={this.state.parameter1}
-                    maxLength={250}
-                    name={"parameter1"}
-                    updateValue={this.updateFormValues}/>
-
-                <div className="input-label">Parameter 2</div>
-                <InputItem
-                    value={this.state.parameter2}
-                    maxLength={250}
-                    name={"parameter2"}
+                    value={this.state.parameters}
+                    maxLength={1000}
+                    name={"parameters"}
                     updateValue={this.updateFormValues}/>
             </div>
         )
@@ -121,6 +129,13 @@ class RSSInput extends CreateInput {
         return(
             <div className="create-input-inner flex-col flex-stretch">
                 <div className="input-header">RSS</div>
+                
+                <div className="input-label">Dashboard Title</div>
+                <InputItem
+                    value={this.state.title}
+                    maxLength={2000}
+                    name={"title"}
+                    updateValue={this.updateFormValues} />
 
                 <div className="input-label">URL</div>
                 <InputItem
@@ -150,6 +165,13 @@ class BasicWebInput extends CreateInput {
         return(
             <div className="create-input-inner flex-col flex-stretch">
                 <div className="text-input input-header">Basic</div>
+                
+                <div className="input-label">Dashboard Title</div>
+                <InputItem
+                    value={this.state.title}
+                    maxLength={2000}
+                    name={"title"}
+                    updateValue={this.updateFormValues} />
 
                 <div className="input-label">URL</div>
                 <InputItem
