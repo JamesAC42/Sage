@@ -82,6 +82,7 @@ var register = function (req, res, db) {
                     res.send({
                         success: true
                     });
+                    return;
                 })
                     .catch(function (err) {
                     console.log(err);

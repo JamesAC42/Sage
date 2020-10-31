@@ -2,9 +2,10 @@ CREATE TABLE public.dashboards
 (
     id uuid NOT NULL,
     name character varying(500) COLLATE pg_catalog."default" NOT NULL,
-    creator uuid NOT NULL,
+    creator_id uuid NOT NULL,
     created_on timestamp with time zone NOT NULL,
     endpoints text COLLATE pg_catalog."default",
+    creator_username character varying(500) COLLATE pg_catalog."default" NOT NULL,
     CONSTRAINT dashboards_pkey PRIMARY KEY (id)
 )
 
