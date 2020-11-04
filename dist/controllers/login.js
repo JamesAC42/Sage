@@ -15,7 +15,6 @@ var Login = function (req, res, db) {
     db.query(query)
         .then(function (r) {
         if (r.rows.length === 0) {
-            console.log(r.rows);
             res.send({
                 success: false,
                 error: 'User does not exist'

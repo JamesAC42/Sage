@@ -24,6 +24,8 @@ const mapDispatchToProps = {
     login: sessionActions.login
 }
 
+type formEvent = React.ChangeEvent<HTMLInputElement>;
+
 class LoginBind extends Component<LoginProps> {
 
     state: LoginState;
@@ -32,57 +34,22 @@ class LoginBind extends Component<LoginProps> {
         this.state = new LoginState();
     }
 
-    updateLoginUsername = (a:string) => {
+    updateLoginValues = (a:formEvent) => {
         this.setState({
             ...this.state,
             login: {
                 ...this.state.login,
-                username: a
+                [a.target.name] : a.target.value
             }
         });
     }
-    updateLoginPassword = (a:string) => {
-        this.setState({
-            ...this.state,
-            login: {
-                ...this.state.login,
-                password: a
-            }
-        });
-    }
-    updateRegisterEmail = (a:string) => {
+
+    updateRegisterValues = (a:formEvent) => {
         this.setState({
             ...this.state,
             register: {
                 ...this.state.register,
-                email: a
-            }
-        });
-    }
-    updateRegisterUsername = (a:string) => {
-        this.setState({
-            ...this.state,
-            register: {
-                ...this.state.register,
-                username: a
-            }
-        });
-    }
-    updateRegisterPassword = (a:string) => {
-        this.setState({
-            ...this.state,
-            register: {
-                ...this.state.register,
-                password: a
-            }
-        });
-    }
-    updateRegisterPasswordConfirm = (a:string) => {
-        this.setState({
-            ...this.state,
-            register: {
-                ...this.state.register,
-                passwordConfirm: a
+                [a.target.name] : a.target.value
             }
         });
     }
@@ -127,6 +94,7 @@ class LoginBind extends Component<LoginProps> {
             console.error('Error: ' +  error);
         })
     }
+
     register = () => {
         if(
             this.state.register.email === '' ||
@@ -193,6 +161,7 @@ class LoginBind extends Component<LoginProps> {
             console.error('Error: ' +  error);
         })
     }
+
     render() {
         if(this.props.session.loggedin === undefined) return null;
         if(this.props.session.loggedin) {
@@ -210,10 +179,18 @@ class LoginBind extends Component<LoginProps> {
                         <div className="login-input-container flex-col flex-stretch">
                             
                             <div className="input-label">Username</div>
-                            <InputItem updateValue={this.updateLoginUsername} />
+                            <InputItem 
+                                value={this.state.login.username} 
+                                maxLength={50}
+                                name={"username"}
+                                updateValue={this.updateLoginValues} />
 
                             <div className="input-label">Password</div>
-                            <PasswordItem updateValue={this.updateLoginPassword} />
+                            <PasswordItem 
+                                value={this.state.login.password}
+                                maxLength={200}
+                                name={"password"}
+                                updateValue={this.updateLoginValues} />
 
                         </div>
                         <div className="login-submit-container center-child">
@@ -234,16 +211,32 @@ class LoginBind extends Component<LoginProps> {
                         <div className="login-input-container flex-col flex-stretch">
                             
                             <div className="input-label">Email Address</div>
-                            <InputItem updateValue={this.updateRegisterEmail} />
+                            <InputItem 
+                                value={this.state.register.email} 
+                                maxLength={250} 
+                                name={"email"}
+                                updateValue={this.updateRegisterValues} />
 
                             <div className="input-label">Username</div>
-                            <InputItem updateValue={this.updateRegisterUsername} />
+                            <InputItem 
+                                value={this.state.register.username}
+                                maxLength={50}
+                                name={"username"}
+                                updateValue={this.updateRegisterValues} />
 
                             <div className="input-label">Password</div>
-                            <PasswordItem updateValue={this.updateRegisterPassword} />
+                            <PasswordItem
+                                value={this.state.register.password} 
+                                maxLength={200}
+                                name={"password"}
+                                updateValue={this.updateRegisterValues} />
 
                             <div className="input-label">Confirm Password</div>
-                            <PasswordItem updateValue={this.updateRegisterPasswordConfirm} />
+                            <PasswordItem
+                                value={this.state.register.passwordConfirm} 
+                                maxLength={200}
+                                name={"passwordConfirm"}
+                                updateValue={this.updateRegisterValues} />
 
                         </div>
                         <div className="login-submit-container center-child">

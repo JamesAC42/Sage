@@ -1,7 +1,15 @@
 import React, { Component, MouseEvent } from 'react';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router';
+
 import "../../css/create.scss";
+import { SessionProps } from './props/Session';
 
 import CreateInputRouter from './CreateInputRouter';
+
+const mapStateToProps = (state:any, props:any) => ({
+    session: state.session
+})
 
 interface ICreateState {
     active:number
@@ -14,7 +22,7 @@ class CreateState implements ICreateState {
     }
 }
 
-class Create extends Component {
+class CreateBind extends Component<SessionProps> {
     state:CreateState;
     constructor(props:any) {
         super(props);
@@ -34,6 +42,11 @@ class Create extends Component {
         }
     }
     render() {
+        if(!this.props.session.loggedin) {
+            return(
+                <Redirect to="/login" />
+            )
+        }
         return(
             <div className="modal create-modal flex-col flex-stretch">
                 <div className="modal-header create-header">Create a Dashboard</div>
@@ -55,15 +68,16 @@ class Create extends Component {
                         <div className={this.activeTabClass(3)}
                             onClick={(e:MouseEvent) => this.updateActive(3)}>RSS</div>
                     </div>
-                    <div className="create-input-outer flex-col flex-stretch">
-                        <CreateInputRouter active={this.state.active}/>
-                        <div className="submit-form-outer">
-                            <div className="button button-default submit-button">CREATE</div>
-                        </div>
-                    </div>
+                    <CreateInputRouter active={this.state.active}/>
                 </div>
             </div>
         )
     }
 }
+
+const Create = connect(
+    mapStateToProps,
+    null
+)(CreateBind);
+
 export default Create;

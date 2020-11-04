@@ -4,17 +4,13 @@ import { Redirect } from 'react-router';
 
 import '../../css/profile.scss';
 
+import { SessionProps } from './props/Session';
+
 const mapStateToProps = (state:any, props:any) => ({
     session: state.session
 });
 
-interface ProfileProps {
-    session: {
-        loggedin: boolean
-    }
-}
-
-class ProfileBind extends Component<ProfileProps> {
+class ProfileBind extends Component<SessionProps> {
     render() {
         if(!this.props.session.loggedin) {
             return(
