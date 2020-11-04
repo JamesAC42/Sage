@@ -40,11 +40,16 @@ body {
   }
 }
 
-.dark {
+.theme {
   height:100vh;
   width:100vw;
   position:fixed;
   top:0;
   left:0;
-  background:$ui-dark;
+  &.dark {
+    background:$ui-dark;
+  }
+  &.light {
+    background:$ui-light;
+  }
 }
