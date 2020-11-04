@@ -10,6 +10,13 @@ a {
   }
 }
 
+.text-subtle {
+  color: $text-subtle;
+  & .dark {
+    color: $text-dark-subtle;
+  }
+}
+
 .flex-col {
   display:flex;
   flex-direction:column;

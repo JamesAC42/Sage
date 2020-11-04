@@ -1,9 +1,26 @@
+@import 'settings.scss';
+
 .dashboard-card {
   box-shadow: 0 0 0.5rem 0.1rem rgba(0,0,0,0.1); // Just the slightest of shadows
   transition: .1s ease-in-out;
+  position: relative; // necessary so that the date-overlay works properly
 
   &:hover {
     transition: .1s ease-in-out;
     box-shadow: 0 0 1rem 0.2rem rgba(0,0,0,0.2); // Make the card "pop out" when it is hovered over
+  }
+
+  .date-overlay {
+    visibility: hidden;
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 0.2rem;
+    border-radius: 0 0.5rem 0 0.2rem;
+    box-shadow: 0 0 1rem 0.2rem rgba(0,0,0,0.2); // Make the card "pop out" when it is hovered over
+    background-color: $ui-light;
+    :hover > & {
+      visibility: visible;
+    }
   }
 }
