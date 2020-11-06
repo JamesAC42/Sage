@@ -31,6 +31,28 @@ interface NavbarProps {
     toggleDarkmode: (enabled: boolean) => {}
 }
 
+interface UserNavbarItemProps {
+    render:boolean,
+    link:string,
+    label:string
+}
+
+class UserNavbarItem extends Component<UserNavbarItemProps> {
+    render() {
+        if(this.props.render) {
+            return(
+                <div className="nav-item">
+                    <Link to={this.props.link}>
+                        {this.props.label}
+                    </Link>
+                </div>
+            )
+        } else {
+            return null;
+        }
+    }
+}
+
 class NavbarBind extends Component<NavbarProps> {
     componentDidMount() {
         if(storageAvailable()) {
@@ -56,27 +78,22 @@ class NavbarBind extends Component<NavbarProps> {
                 <div className="nav-item">
                     <Link to="/explore">Explore</Link>
                 </div>
-                <div className="nav-item">
-                    <Link to="/create">Create</Link>
-                </div>
-                {
-                    this.props.session.loggedin ?
-                    <div className="nav-item">
-                        <Link to="/profile">Profile</Link>
-                    </div> : null
-                }
-                {
-                    this.props.session.loggedin ?
-                    <div className="nav-item">
-                        <Link to="/logout">Logout</Link>
-                    </div> : null
-                }
-                {
-                    !this.props.session.loggedin?
-                    <div className="nav-item">
-                        <Link to="/login">Login</Link>
-                    </div> : null
-                }
+                <UserNavbarItem
+                    render={this.props.session.loggedin}
+                    link="/create"
+                    label="Create" />
+                <UserNavbarItem
+                    render={this.props.session.loggedin}
+                    link="/profile"
+                    label="Profile" />
+                <UserNavbarItem
+                    render={this.props.session.loggedin}
+                    link="/logout"
+                    label="Logout" />
+                <UserNavbarItem
+                    render={!this.props.session.loggedin}
+                    link="/login"
+                    label="Login" />
                 <div className="nav-item">
                     <img
                     src={

@@ -6,16 +6,12 @@ $ui-subtle: rgb(211, 211, 211);
 $ui-dark: rgb(46, 45, 49);
 $ui-dark-subtle: rgb(77, 77, 77);
 
-// $background-light: rgb(255, 255, 255);
-// $background-dark: rgb(39, 39, 39);
-
 $text-light: rgb(255, 255, 255);
 $text-subtle:rgb(71, 71, 71);
 $text-dark: rgb(0, 0, 0);
 $text-dark-subtle:rgb(196, 196, 196);
 
 $primary: rgb(77, 102, 182);
-$primary-light: rgb(157, 180, 255);
 
 $contrast: rgb(137, 156, 243);
 $contrast-dark: rgb(27, 27, 27);
@@ -31,5 +27,15 @@ $active-dark: rgb(205, 191, 255);
 
 $error: rgb(255, 108, 108);
 $error-dark: rgb(255, 130, 130);
+
+$shadow-color: rgba(0,0,0,0.75);
+
+$link: blue; // TODO: Update color to match color scheme
+
+
+///////// SIZES ////////////////////////////////////////////////////////////////
+$standard-gutter: 1rem;
+
+$nav-height: 5rem; // Height of the navbar
 
 $medium-height: 850px;

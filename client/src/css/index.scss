@@ -4,6 +4,22 @@
   font-family: Syne;
   src: url("../fonts/Syne-Regular.ttf");
 }
+@font-face {
+  font-family: 'Syne-Bold';
+  src: url("../fonts/Syne-Bold.ttf");
+}
+@font-face {
+  font-family: 'Syne-Medium';
+  src: url("../fonts/Syne-Medium.ttf");
+}
+@font-face {
+  font-family: 'Syne-SemiBold';
+  src: url("../fonts/Syne-SemiBold.ttf");
+}
+@font-face {
+  font-family: OverpassMono;
+  src: url("../fonts/OverpassMono-Regular.ttf");
+}
 
 body {
   font-family: Syne, sans-serif;
@@ -16,17 +32,24 @@ body {
   top:50%;
   left:50%;
   transform:translate(-50%, -50%) rotate(45deg);
+  z-index: -1; // Put it behind the rest of the content
   background: $contrast;
+  overflow: hidden;
   .dark & {
     background: $contrast-dark;
   }
 }
 
-.dark {
+.theme {
   height:100vh;
   width:100vw;
   position:fixed;
   top:0;
   left:0;
-  background:$ui-dark;
+  &.dark {
+    background:$ui-dark;
+  }
+  &.light {
+    background:$ui-light;
+  }
 }

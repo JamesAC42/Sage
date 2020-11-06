@@ -1,88 +1,98 @@
 @import 'settings.scss';
 
 div.create-modal {
-    height:70vh;
-    width:70vw;
-    justify-content: baseline;
-    overflow:hidden;
+  height:70vh;
+  width:70vw;
+  justify-content: baseline;
+  overflow:hidden;
 }
 
 div.create-content {
-    flex:1;
+  flex:1;
 }
 
 div.create-dialogue {
-    width:20vw;
-    border-right:1px solid $ui-subtle;
-    background:$ui-light;
-    z-index:40;
-    
-    .dark & {
-        background:$ui-dark;
-        border-right:1px solid $ui-dark-subtle;
-    }
+  width:20vw;
+  border-right:1px solid $ui-subtle;
+  background:$ui-light;
+  z-index:40;
+
+  .dark & {
+    background:$ui-dark;
+    border-right:1px solid $ui-dark-subtle;
+  }
 }
 
 div.create-dialogue-inner {
-    margin:20px;
-    font-size:16px;
-    text-align:right;
+  margin:20px;
+  font-size:16px;
+  text-align:right;
 
-    .dark & {
-        color:$text-light;
-    }
+  .dark & {
+    color:$text-light;
+  }
 }
 
 div.endpoint-type-select {
-    width:150px;
-    background:$ui-light;
-    box-shadow: inset 0px 0px 21px -8px rgba(163,163,163,1);
+  width:150px;
+  background:$ui-light;
+  box-shadow: inset 0px 0px 21px -8px rgba(163,163,163,1);
 
-    .dark & {
-        background:$ui-dark;
-        box-shadow: inset 0px 0px 21px -8px rgb(0, 0, 0);
-    }
+  .dark & {
+    background:$ui-dark;
+    box-shadow: inset 0px 0px 21px -8px rgb(0, 0, 0);
+  }
 }
 
 div.endpoint-type-select {
-    .vertical-tab {
-        z-index:20;
-    }
+  .vertical-tab {
+    z-index:20;
+  }
 }
 
 div.create-input-outer {
-    flex:1;
-    background:$ui-light;
-    z-index:40;
-    padding:0 30px;
+  flex:1;
+  background:$ui-light;
+  z-index:40;
+  padding:0 30px;
 
-    .dark & {
-        background: $ui-dark;
-    }
+  .dark & {
+    background: $ui-dark;
+  }
 }
 
 div.create-input-inner {
-    flex:1;
+  flex:1;
 }
 
 div.input-header {
-    height:80px;
-    line-height:80px;
-    font-size:26px;
+  height:80px;
+  line-height:80px;
+  font-size:26px;
 
-    .dark & {
-        color:$ui-light;
-    }
+  .dark & {
+    color:$ui-light;
+  }
 }
 
 div.submit-form-outer {
+  height:100px;
+  position:relative;
+}
+
+div.create-error {
     height:100px;
-    position:relative;
+    line-height:100px;
+    color: $error;
+    font-size:16px;
+    .dark & {
+        color:$error-dark;
+    }
 }
 
 div.submit-button {
-    position:absolute;
-    top:50%;
-    right:0;
-    transform:translateY(-50%);
+  position:absolute;
+  top:50%;
+  right:0;
+  transform:translateY(-50%);
 }

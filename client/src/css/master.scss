@@ -1,213 +1,348 @@
 @import 'settings.scss';
 
+
+a {
+  text-decoration: none;
+  color: $link;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.text-subtle {
+  color: $text-subtle;
+  & .dark {
+    color: $text-dark-subtle;
+  }
+}
+
 .flex-col {
-    display:flex;
-    flex-direction:column;
+  display:flex;
+  flex-direction:column;
 }
 
 .flex-stretch {
-    align-items:stretch;
+  align-items:stretch;
 }
 
 .flex-center {
-    align-items:center;
+  align-items:center;
 }
 
 .flex-row {
-    display:flex;
-    flex-direction:row;
+  display:flex;
+  flex-direction:row;
 }
 
 .center-child {
-    display:flex;
-    align-items:center;
-    justify-content:center;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
 .button {
-    height:50px;
-    width:100px;
-    background:$ui-light;
-    border-radius:5px;
-    text-align:center;
-    line-height:50px;
-    border-width: 1px;
-    border-style: solid;
-    font-size:18px;
-    cursor:pointer;
-    transition:all .1s ease-in-out;
+  height:50px;
+  width:100px;
+  background:$ui-light;
+  border-radius:5px;
+  text-align:center;
+  line-height:50px;
+  border-width: 1px;
+  border-style: solid;
+  font-size:18px;
+  cursor:pointer;
+  transition:all .1s ease-in-out;
 
-    &.button-default {
-        border-color:$default;
-        color:$default;
-        &:hover {
-            background:$default;
-            color:$ui-light;
-        }
-
-        .dark & {
-            border-color: $default-dark;
-            color: $default-dark;
-            background: $ui-dark;
-            &:hover {
-                background:$default-dark;
-                color:$ui-dark;
-            }
-        }
-
+  &.button-default {
+    border-color:$default;
+    color:$default;
+    &:hover {
+      background:$default;
+      color:$ui-light;
     }
 
-    &.button-success {
-        border-color:$success;
-        color:$success;
-        &:hover {
-            background:$success;
-            color:$ui-light;
-        }
+    .dark & {
+      border-color: $default-dark;
+      color: $default-dark;
+      background: $ui-dark;
+      &:hover {
+        background:$default-dark;
+        color:$ui-dark;
+      }
+    }
+  }
 
-        .dark & {
-            border-color: $success-dark;
-            color: $success-dark;
-            background: $ui-dark;
-            &:hover {
-                background:$success-dark;
-                color:$ui-dark;
-            }
-        }
+  &.button-success {
+    border-color:$success;
+    color:$success;
+    &:hover {
+      background:$success;
+      color:$ui-light;
     }
 
-    &.button-error {
-        border-color:$error;
-        color:$error;
-        &:hover {
-            background:$error;
-            color:$ui-light;
-        }
+    .dark & {
+      border-color: $success-dark;
+      color: $success-dark;
+      background: $ui-dark;
+      &:hover {
+        background:$success-dark;
+        color:$ui-dark;
+      }
+    }
+  }
 
-        .dark & {
-            border-color: $error-dark;
-            color: $error-dark;
-            background: $ui-dark;
-            &:hover {
-                background:$error-dark;
-                color:$ui-dark;
-            }
-        }
+  &.button-error {
+    border-color:$error;
+    color:$error;
+    &:hover {
+      background:$error;
+      color:$ui-light;
     }
 
-    @media only screen and (max-height: $medium-height) {
-            height:40px;
-            width:80px;
-            line-height:40px;
-            font-size:16px;
+    .dark & {
+      border-color: $error-dark;
+      color: $error-dark;
+      background: $ui-dark;
+      &:hover {
+        background:$error-dark;
+        color:$ui-dark;
+      }
     }
+  }
+
+  @media only screen and (max-height: $medium-height) {
+    height:40px;
+    width:80px;
+    line-height:40px;
+    font-size:16px;
+  }
 
 }
 
 .input-label {
-    height:40px;
-    line-height:50px;
-    font-size:16px;
-    color:$text-subtle;
+  height:40px;
+  line-height:50px;
+  font-size:16px;
+  color:$text-subtle;
 
-    .dark & {
-        color:$text-dark-subtle;
-    }
+  .dark & {
+    color:$text-dark-subtle;
+  }
 
-    @media only screen and (max-height: $medium-height) {
-        height:30px;
-        line-height:40px;
-        font-size:14px;
-    }
+  @media only screen and (max-height: $medium-height) {
+    height:30px;
+    line-height:40px;
+    font-size:14px;
+  }
 }
 
 input.text-input {
-    font-family:Syne;
-    padding:0 20px;
-    height:30px;
-    line-height:30px;
-    font-size:16px;
-    color:$text-dark;
-    border:1px solid $ui-subtle;
-    border-radius:5px;
-    transition:border .1s ease-in-out;
+  font-family:Syne;
+  padding:0 20px;
+  height:30px;
+  line-height:30px;
+  font-size:16px;
+  color:$text-dark;
+  border:1px solid $ui-subtle;
+  border-radius:5px;
+  transition:border .1s ease-in-out;
 
+  &:focus {
+    border:1px solid $primary;
+  }
+
+  .dark & {
+    color:$text-light;
+    background:$ui-dark;
+    border-color:$ui-dark-subtle;
     &:focus {
-        border:1px solid $primary;
+      border:1px solid $primary;
     }
+  }
 
-    .dark & {
-        color:$text-light;
-        background:$ui-dark;
-        border-color:$ui-dark-subtle;
-        &:focus {
-            border:1px solid $primary;
-        }
-    }
-
-    @media only screen and (max-height:$medium-height) {
-        height:25px;
-        line-height:25px;
-        font-size:14px;
-    }
+  @media only screen and (max-height:$medium-height) {
+    height:25px;
+    line-height:25px;
+    font-size:14px;
+  }
 }
 
 .modal {
-    position:fixed;
-    top:50%;
-    left:50%;
-    transform:translate(-50%, -50%);
-    background:$ui-light;
-    border-radius: 10px;
-    box-shadow: 0px 10px 23px -8px rgba(0,0,0,0.75);
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+  background:$ui-light;
+  border-radius: 0.5rem;
+  box-shadow: 0px 10px 23px -8px $shadow-color;
 
-    .dark & {
-        background:$ui-dark;
-    }
+  .dark & {
+    background:$ui-dark;
+  }
 }
 
 .modal-header {
-    margin:0;
-    height:80px;
-    line-height:80px;
-    font-size:26px;
-    color:$ui-dark;
-    text-align:center;
-    border-bottom:1px solid $ui-subtle;
+  margin:0;
+  height:80px;
+  line-height:80px;
+  font-size:26px;
+  color:$ui-dark;
+  text-align:center;
+  border-bottom:1px solid $ui-subtle;
 
-    .dark & {
-        color:$text-light;
-        border-bottom:1px solid $ui-dark-subtle;
-    }
+  .dark & {
+    color:$text-light;
+    border-bottom:1px solid $ui-dark-subtle;
+  }
 }
 
+.container {
+  position: absolute;
+  top: $nav-height + $standard-gutter + 0.5rem;
+  width: 80%;
+
+  left: 50%; // Center the container
+  transform: translate(-50%);
+  height: calc(100vh - #{$nav-height} - #{$standard-gutter});
+
+  margin-bottom: $standard-gutter; // A little bit of space between the container and the bottom of the page
+
+  border-radius: $standard-gutter;
+  box-shadow: 0 0 1rem 0.1rem rgba(0,0,0,0.1); // Just the slightest of shadows
+
+  background-color: $ui-light;
+  .dark & {
+    background-color: $ui-dark;
+    box-shadow: 0 0 1rem 0.1rem rgba(255,255,255,0.1); // Just the slightest of shadows
+  }
+
+  .container-heading {
+    font-size: 2rem;
+    font-weight: bolder;
+  }
+  .container-heading-subtle {
+    font-weight: lighter;
+    font-size: 1.2rem;
+
+    color: lighten($text-dark, 50%);
+    .dark & {
+      color: darken($text-light, 30%);
+    }
+  }
+  &.container-fill {
+    width:100%;
+    top:$nav-height;
+    border-radius: 0;
+    height: calc(100vh - #{$nav-height});
+  }
+}
+
+.container-header {
+  width:calc(100% - 60px);
+  height:100px;
+  line-height:150px;
+  font-size:30px;
+  color:$text-dark;
+  padding:0 30px;
+  border-bottom:1px solid $ui-subtle;
+  font-family: 'Syne-Medium';
+  .dark & {
+    color:$text-light;
+    border-color:$ui-dark-subtle;
+  }
+}
+
+.card {
+  padding: $standard-gutter;
+  margin: $standard-gutter;
+
+  border-radius: 0.5rem;
+  border: 0.2px solid $contrast;
+  &.unbordered {
+    border: none;
+    padding: 0;
+    .card-header {
+      //padding-top: $standard-gutter / 2;
+      //background-color: red;
+      margin-bottom: -1 * $standard-gutter;
+    }
+  }
+
+  //background-color: $ui-light;
+  color: $text-dark;
+  .dark & {
+    background-color: $ui-dark;
+    color: $text-light;
+  }
+  
+  .card-header {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+}
+
+
+.card-deck {
+  display: flex;
+
+  margin-top: -2 * $standard-gutter;
+  margin-bottom: -1 * $standard-gutter;
+
+  &.two-cols > * {
+    width: 50%;
+  }
+  &.three-cols > * {
+    width: 33.33%;
+  }
+  &.four-cols > * {
+    width: 25%;
+  }
+  &.five-cols > * {
+    width: 20%;
+  }
+
+  .card + .card { // If the previous element was a card in a deck (which means that it has a margin), apply no left margin
+    margin-left: 0;
+  }
+}
+
+.card-list {
+  display:flex;
+  width:100%;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction:row;
+}
+
+
 .vertical-tab {
-    height:50px;
-    line-height:50px;
-    text-align: right;
-    font-size:18px;
-    padding-right:15px;
-    color:$text-dark;
-    background:$ui-light;
-    border-bottom:1px solid $ui-subtle;
-    border-right:1px solid $ui-subtle;
-    box-shadow: 0px 9px 21px -8px rgba(163,163,163,1);
-    cursor:pointer;
-    transition:border .1s ease-in-out;
+  height:50px;
+  line-height:50px;
+  text-align: right;
+  font-size:18px;
+  padding-right:15px;
+  color:$text-dark;
+  background:$ui-light;
+  border-bottom:1px solid $ui-subtle;
+  border-right:1px solid $ui-subtle;
+  box-shadow: 0px 9px 21px -8px rgba(163,163,163,1);
+  cursor:pointer;
+  transition:border .1s ease-in-out;
+
+  &.vertical-tab-active {
+    border-right: 3px solid $active;
+  }
+
+  .dark & {
+    color:$text-light;
+    background:rgb(41, 41, 46);
+    border-bottom:1px solid $ui-dark-subtle;
+    border-right:1px solid $ui-dark-subtle;
+    box-shadow: 0px 9px 21px -8px rgb(0, 0, 0);
 
     &.vertical-tab-active {
-        border-right: 3px solid $active;
+      border-right: 3px solid $active-dark;
     }
-
-    .dark & {
-        color:$text-light;
-        background:rgb(41, 41, 46);
-        border-bottom:1px solid $ui-dark-subtle;
-        border-right:1px solid $ui-dark-subtle;
-        box-shadow: 0px 9px 21px -8px rgb(0, 0, 0);
-
-        &.vertical-tab-active {
-            border-right: 3px solid $active-dark;
-        }
-    }
+  }
 }
