@@ -1,0 +1,179 @@
+@import 'settings.scss';
+
+// Row Format 
+.row::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+// Column Format 
+.col {
+    float: left;
+    width: 33.33%; 
+}
+
+// Font format for the Head Title 
+.head {
+    font-size: 180px; 
+    font: bold; 
+}
+
+// Aligns the text to the left 
+.left {
+    text-align: left; 
+}
+
+// Makes a text bolded
+.bold {
+    font: bold; 
+}
+
+// Font format for the Title
+.title1 {
+    font-size: 35px;
+    font: bold; 
+}
+
+// Container that holds all attributes in the homepage 
+.home-container {
+    position: absolute;
+    top: $nav-height; // Necessary to remove the default padding added by many browsers
+    width: 100vw;
+  
+    left: 50%; // Center the container
+    transform: translate(-50%);
+    //height: calc(100vh - $nav-height);
+
+    margin: 0;
+  
+    //margin-bottom: $standard-gutter; // A little bit of space between the container and the bottom of the page
+  
+    //border-radius: $standard-gutter;
+    //box-shadow: 0 0 1rem 0.1rem rgba(0,0,0,0.1); // Just the slightest of shadows
+  
+    background-color: $ui-light;
+    .dark & {
+      background-color: $ui-dark;
+    }
+
+  }
+
+// Footer Card: Only used for the footer of the homepage 
+.footer-card {
+    padding: $standard-gutter;
+    text-align: left;
+
+    border-radius: 0.5rem;
+    
+    background-color: $contrast;
+    color: white;
+    
+    .dark & {
+        background-color: $contrast-dark;
+        color: $text-light;
+    }
+}
+
+// Generic Card: Used for any additional card that is not the slideshow, header nor footer 
+.card_h {
+    padding: $standard-gutter;
+    margin: $standard-gutter;
+  
+    border-radius: 0.5rem;
+
+    height: 100vh;
+
+    font-size: 20px;
+  
+    color: $text-dark;
+    .dark & {
+      color: $text-light;
+    }
+}
+
+// Header Card: Only used for the header of the homepage 
+.header-card {
+    padding: $standard-gutter;
+    margin: $standard-gutter;
+
+    text-align: center; 
+
+    font-size: 20px;
+  
+    border-radius: 0.5rem;
+    border: 0.2px solid transparent;
+
+    height: 50vh; 
+  
+    color: $text-dark;
+    .dark & {
+      color: $text-light;
+      border: black; 
+    }
+}
+
+/* Slide Show Code */
+
+// Slide Show Frame CSS
+.fling-minislide {
+    width:1800px; 
+    height:800px; 
+    overflow:hidden; 
+    position:relative;
+    padding: $standard-gutter;
+    margin: $standard-gutter;
+    border-radius: 0.5rem;
+    border: 0.2px solid $contrast;
+}
+
+// Slide Show Image & Text Animation and Size 
+.fling-minislide img { 
+    position:absolute; 
+    animation:fling-minislide 20s infinite; 
+    opacity:0; 
+    //width: 800px; 
+    //height: 800px;
+    width: 50%;
+    height: 95%
+}
+
+.fling-minislide text {
+    position: absolute;
+    animation: fling-minislide 20s infinite;
+    width: 100%;
+    height: auto; 
+}
+
+// KeyFrames 
+@keyframes fling-minislide {25%{opacity:1;} 40%{opacity:0;}}
+.fling-minislide img:nth-child(4){animation-delay:0s;}
+.fling-minislide img:nth-child(3){animation-delay:5s;}
+.fling-minislide img:nth-child(2){animation-delay:10s;}
+.fling-minislide img:nth-child(1){animation-delay:15s;}
+ 
+
+
+// Card for Slideshow 
+.slideshow-card1 {
+    padding: $standard-gutter;
+    margin: $standard-gutter;
+  
+    border-radius: 0.5rem;
+    border: 0.2px solid chocolate;
+
+    height: 100vh;
+
+    font-size: 20px;
+  
+    color: $text-dark;
+    .dark & {
+      color: $text-light;
+      border: 0.2px solid white;
+    }
+}
+
+.col2 {
+    float: left;
+    width: 50%; 
+}
