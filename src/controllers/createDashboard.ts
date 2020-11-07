@@ -3,6 +3,9 @@ const { v4: uuid } = require('uuid');
 import dashboardQueries from '../queries/dashboardQueries';
 import userQueries from '../queries/userQueries';
 
+import { Endpoint, EndpointData } from '../interfaces/Endpoint';
+import { EndpointTypes } from '../EndpointTypes';
+
 const createDashboard = (req:any, res:any, db: any, cache:any) => {
     const data = req.body.data;
     const user_id = req.session.key;
@@ -20,6 +23,18 @@ const createDashboard = (req:any, res:any, db: any, cache:any) => {
 
         const title = (data.title == '') ? 'Untitled Dashboard' : data.title;
 
+        let endpoint: Endpoint = {
+            type:data.type,
+            url:data.url,
+            parameters:''
+        }
+
+        if(data.type === EndpointTypes.RSS) {
+            endpoint.parameters = data.key;
+        } else {
+            endpoint.parameters = data.parameters;
+        }
+
         db.query(usernameQuery)
             .then((r: any) => {
                 const createDashboard = {
@@ -31,7 +46,7 @@ const createDashboard = (req:any, res:any, db: any, cache:any) => {
                         user_id,
                         r.rows[0].username,
                         new Date(),
-                        JSON.stringify([data])
+                        JSON.stringify([endpoint])
                     ]
                 };
         
@@ -41,17 +56,7 @@ const createDashboard = (req:any, res:any, db: any, cache:any) => {
                             [{
                                 endpoint: data.url, 
                                 parameters: data.parameters, 
-                                data: {
-                                    apples: 10,
-                                    oranges: 20,
-                                    grapefruits: 2,
-                                    grapes: 110,
-                                    prices: {
-                                        apples: 4.50,
-                                        bananas: 1.99,
-                                        watermelon: 3.25
-                                    }
-                                }
+                                data: {}
                             }]
                         ));
                         res.send({
