@@ -34,7 +34,7 @@ body {
   transform:translate(-50%, -50%) rotate(45deg);
   z-index: -1; // Put it behind the rest of the content
   background: $contrast;
-  overflow: hidden;
+  overflow-x: hidden;
   .dark & {
     background: $contrast-dark;
   }

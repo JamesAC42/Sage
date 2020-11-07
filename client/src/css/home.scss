@@ -1,70 +1,119 @@
 @import 'settings.scss';
 
 // Row Format 
-.row::after {
-    content: "";
-    display: table;
-    clear: both;
-}
+.presentation-row {
+    display: flex;
+    flex-direction:row;
+    width:100%;
+    align-items:top;
 
-// Column Format 
-.col {
-    float: left;
-    width: 33.33%; 
-}
-
-// Font format for the Head Title 
-.head {
-    font-size: 180px; 
-    font: bold; 
-}
-
-// Aligns the text to the left 
-.left {
-    text-align: left; 
-}
-
-// Makes a text bolded
-.bold {
-    font: bold; 
-}
-
-// Font format for the Title
-.title1 {
-    font-size: 35px;
-    font: bold; 
-}
-
-// Container that holds all attributes in the homepage 
-.home-container {
-    position: absolute;
-    top: $nav-height; // Necessary to remove the default padding added by many browsers
-    width: 100vw;
-  
-    left: 50%; // Center the container
-    transform: translate(-50%);
-    //height: calc(100vh - $nav-height);
-
-    margin: 0;
-  
-    //margin-bottom: $standard-gutter; // A little bit of space between the container and the bottom of the page
-  
-    //border-radius: $standard-gutter;
-    //box-shadow: 0 0 1rem 0.1rem rgba(0,0,0,0.1); // Just the slightest of shadows
-  
-    background-color: $ui-light;
-    .dark & {
-      background-color: $ui-dark;
+    &.title {
+        box-shadow:inset 0px -1px 45px -30px #000000;
+    }
+    
+    & > .col {
+        flex:1;
+        margin:10px;
+        padding:0 15px;
     }
 
-  }
+    &.slideshow {
+        height:50vh;
+        align-items:center;
+        justify-content:center;
+        & > .col {
+            height:40vh;
+            display:flex;
+            flex-direction:column;
+            justify-content: center;
+            align-items:center;
+            & > img {
+                height:40vh;
+            }
+        }
+        & > .col:first-child {
+            border-right:1px solid $ui-subtle;
+        }
+    }
+}
+
+div.title-card {
+    width:100vw;
+    height:45vh;
+    position:relative;
+    padding:0;
+    overflow:hidden;
+}
+
+@keyframes slide-in {
+    0% {
+        transform:translate(-50%, -45vh);
+    }
+    100% {
+        transform:translate(-50%, -50%);
+    }
+}
+
+div.title-card-inner {
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    font-size:10em;
+    text-align:center;
+    height:40vh;
+    line-height:40vh;
+    width:100%;
+    animation:slide-in .5s ease-in-out 1;
+    z-index:1000;
+    color:$text-light;
+}
+
+div.title-card-background {
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%) rotate(45deg);
+    width:50vw;
+    height:100vw;
+    background:$contrast;
+    z-index:100;
+    .dark & {
+        background:$contrast-dark;
+    }
+}
+
+div.info-header {
+    height:80px;
+    line-height:80px;
+    text-align:center;
+    font-size:2em;
+    font-family:'Syne';
+    .dark & {
+        color:$ui-light;
+    }
+}
+
+ul.info {
+    color:$text-dark;
+    list-style-type:none;
+    font-size:1em;
+    font-family:'Syne';
+    padding:0;
+    text-align:center;
+    .dark & {
+        color:$ui-light;
+    }
+    .slide & {
+        max-width:60%;
+    }
+}
 
 // Footer Card: Only used for the footer of the homepage 
 .footer-card {
+    margin-top:auto;
     padding: $standard-gutter;
     text-align: left;
-
-    border-radius: 0.5rem;
     
     background-color: $contrast;
     color: white;
@@ -73,107 +122,4 @@
         background-color: $contrast-dark;
         color: $text-light;
     }
-}
-
-// Generic Card: Used for any additional card that is not the slideshow, header nor footer 
-.card_h {
-    padding: $standard-gutter;
-    margin: $standard-gutter;
-  
-    border-radius: 0.5rem;
-
-    height: 100vh;
-
-    font-size: 20px;
-  
-    color: $text-dark;
-    .dark & {
-      color: $text-light;
-    }
-}
-
-// Header Card: Only used for the header of the homepage 
-.header-card {
-    padding: $standard-gutter;
-    margin: $standard-gutter;
-
-    text-align: center; 
-
-    font-size: 20px;
-  
-    border-radius: 0.5rem;
-    border: 0.2px solid transparent;
-
-    height: 50vh; 
-  
-    color: $text-dark;
-    .dark & {
-      color: $text-light;
-      border: black; 
-    }
-}
-
-/* Slide Show Code */
-
-// Slide Show Frame CSS
-.fling-minislide {
-    width:1800px; 
-    height:800px; 
-    overflow:hidden; 
-    position:relative;
-    padding: $standard-gutter;
-    margin: $standard-gutter;
-    border-radius: 0.5rem;
-    border: 0.2px solid $contrast;
-}
-
-// Slide Show Image & Text Animation and Size 
-.fling-minislide img { 
-    position:absolute; 
-    animation:fling-minislide 20s infinite; 
-    opacity:0; 
-    //width: 800px; 
-    //height: 800px;
-    width: 50%;
-    height: 95%
-}
-
-.fling-minislide text {
-    position: absolute;
-    animation: fling-minislide 20s infinite;
-    width: 100%;
-    height: auto; 
-}
-
-// KeyFrames 
-@keyframes fling-minislide {25%{opacity:1;} 40%{opacity:0;}}
-.fling-minislide img:nth-child(4){animation-delay:0s;}
-.fling-minislide img:nth-child(3){animation-delay:5s;}
-.fling-minislide img:nth-child(2){animation-delay:10s;}
-.fling-minislide img:nth-child(1){animation-delay:15s;}
- 
-
-
-// Card for Slideshow 
-.slideshow-card1 {
-    padding: $standard-gutter;
-    margin: $standard-gutter;
-  
-    border-radius: 0.5rem;
-    border: 0.2px solid chocolate;
-
-    height: 100vh;
-
-    font-size: 20px;
-  
-    color: $text-dark;
-    .dark & {
-      color: $text-light;
-      border: 0.2px solid white;
-    }
-}
-
-.col2 {
-    float: left;
-    width: 50%; 
 }

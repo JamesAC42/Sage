@@ -235,6 +235,10 @@ input.text-input {
     top:$nav-height;
     border-radius: 0;
     height: calc(100vh - #{$nav-height});
+    overflow:hidden;
+  }
+  &.scroll {
+    overflow-y:scroll;
   }
 }
 
