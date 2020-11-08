@@ -19,7 +19,8 @@ const getDashboard = (id:string) => {
 
 interface IDashData {
     data: {},
-    endpoint: string
+    endpoint: string,
+    parameters: string
 }
 
 class DashboardState {

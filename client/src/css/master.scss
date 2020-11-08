@@ -1,5 +1,22 @@
 @import 'settings.scss';
 
+
+a {
+  text-decoration: none;
+  color: $link;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.text-subtle {
+  color: $text-subtle;
+  & .dark {
+    color: $text-dark-subtle;
+  }
+}
+
 .flex-col {
   display:flex;
   flex-direction:column;
@@ -95,10 +112,10 @@
   }
 
   @media only screen and (max-height: $medium-height) {
-          height:40px;
-          width:80px;
-          line-height:40px;
-          font-size:16px;
+    height:40px;
+    width:80px;
+    line-height:40px;
+    font-size:16px;
   }
 
 }
@@ -182,10 +199,10 @@ input.text-input {
 
 .container {
   position: absolute;
-  top: $nav-height + $standard-gutter; // Necessary to remove the default padding added by many browsers
+  top: $nav-height + $standard-gutter + 0.5rem;
   width: 80%;
 
-  left:50%; // Center the container
+  left: 50%; // Center the container
   transform: translate(-50%);
   height: calc(100vh - #{$nav-height} - #{$standard-gutter});
 
@@ -197,12 +214,31 @@ input.text-input {
   background-color: $ui-light;
   .dark & {
     background-color: $ui-dark;
+    box-shadow: 0 0 1rem 0.1rem rgba(255,255,255,0.1); // Just the slightest of shadows
+  }
+
+  .container-heading {
+    font-size: 2rem;
+    font-weight: bolder;
+  }
+  .container-heading-subtle {
+    font-weight: lighter;
+    font-size: 1.2rem;
+
+    color: lighten($text-dark, 50%);
+    .dark & {
+      color: darken($text-light, 30%);
+    }
   }
   &.container-fill {
     width:100%;
     top:$nav-height;
     border-radius: 0;
     height: calc(100vh - #{$nav-height});
+    overflow:hidden;
+  }
+  &.scroll {
+    overflow-y:scroll;
   }
 }
 
@@ -227,22 +263,36 @@ input.text-input {
 
   border-radius: 0.5rem;
   border: 0.2px solid $contrast;
+  &.unbordered {
+    border: none;
+    padding: 0;
+    .card-header {
+      //padding-top: $standard-gutter / 2;
+      //background-color: red;
+      margin-bottom: -1 * $standard-gutter;
+    }
+  }
 
-  background-color: $ui-light;
+  //background-color: $ui-light;
   color: $text-dark;
   .dark & {
     background-color: $ui-dark;
     color: $text-light;
   }
-  & > a {
-    color: $contrast;
+  
+  .card-header {
+    font-size: 1.5rem;
+    font-weight: bold;
   }
 }
 
 
 .card-deck {
   display: flex;
-  justify-content: space-between;
+
+  margin-top: -2 * $standard-gutter;
+  margin-bottom: -1 * $standard-gutter;
+
   &.two-cols > * {
     width: 50%;
   }

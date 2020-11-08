@@ -1,15 +1,17 @@
 @import 'settings.scss';
 
-.profile-outer {
-  position:fixed;
-  height:100vh;
-  width:100vw;
-  background: $ui-light;
-  top:0;
-  left:0;
-  transform:translateY($nav-height);
+.favorites {
+  display: flex;
+}
 
-  .dark & {
-    background: $ui-dark;
-  }
+.favorites-link {
+  margin-left: auto;
+  font-size: 1rem;
+  align-self: center;
+}
+
+
+.preview {
+  width: 100%;
+  box-sizing: border-box;
 }
