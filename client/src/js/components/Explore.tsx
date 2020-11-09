@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import DashboardCard from './reusable/DashboardCard';
 
 export interface IDashboard {
     name:string,
@@ -47,19 +48,20 @@ export default class Explore extends Component {
     render() {
         return(
             <div className="container">
-                <div className="container-header">
-                    Dashboards
+                <div className="unbordered card">
+                    <div className="container-heading">
+                        Dashboards
+                    </div>
                 </div>
-                <div className="card-list">
+                <hr />{/* TODO: Add styling to <hr> element */}
+                <div className="card-deck">
                     {
                         this.state.dashboards.map((item, index) =>
-                            <div className="card flex-col flex-center" key={index}>
-                                <Link to={`/edit/${item.id}`}>
-                                    {item.name}
-                                </Link>
-                                <div>{this.readable(item.created_on)}</div>
-                                <div>{item.creator_username}</div>
-                            </div>
+                            <DashboardCard name={item.name}
+                                           url={`/edit/${item.id}`}
+                                           author={item.creator_username}
+                                           previewImageURL="https://via.placeholder.com/150"
+                                           dateModified={this.readable(item.created_on)} />
                         )
                     }
                 </div>
