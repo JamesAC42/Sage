@@ -242,21 +242,6 @@ input.text-input {
   }
 }
 
-.container-header {
-  width:calc(100% - 60px);
-  height:100px;
-  line-height:150px;
-  font-size:30px;
-  color:$text-dark;
-  padding:0 30px;
-  border-bottom:1px solid $ui-subtle;
-  font-family: 'Syne-Medium';
-  .dark & {
-    color:$text-light;
-    border-color:$ui-dark-subtle;
-  }
-}
-
 .card {
   padding: $standard-gutter;
   margin: $standard-gutter;
@@ -267,8 +252,7 @@ input.text-input {
     border: none;
     padding: 0;
     .card-header {
-      //padding-top: $standard-gutter / 2;
-      //background-color: red;
+      background-color: red;
       margin-bottom: -1 * $standard-gutter;
     }
   }
@@ -279,7 +263,7 @@ input.text-input {
     background-color: $ui-dark;
     color: $text-light;
   }
-  
+
   .card-header {
     font-size: 1.5rem;
     font-weight: bold;
@@ -288,35 +272,25 @@ input.text-input {
 
 
 .card-deck {
-  display: flex;
+  box-sizing: border-box;
 
-  margin-top: -2 * $standard-gutter;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+
+  padding-left: $standard-gutter;
+  margin-top: -1 * $standard-gutter;
   margin-bottom: -1 * $standard-gutter;
 
-  &.two-cols > * {
-    width: 50%;
-  }
-  &.three-cols > * {
-    width: 33.33%;
-  }
-  &.four-cols > * {
-    width: 25%;
-  }
-  &.five-cols > * {
-    width: 20%;
-  }
-
-  .card + .card { // If the previous element was a card in a deck (which means that it has a margin), apply no left margin
+  .card {
+    box-sizing: border-box;
     margin-left: 0;
-  }
-}
+    flex-basis: calc(33.3333% - #{$standard-gutter});
 
-.card-list {
-  display:flex;
-  width:100%;
-  justify-content: center;
-  flex-wrap: wrap;
-  flex-direction:row;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
 }
 
 
