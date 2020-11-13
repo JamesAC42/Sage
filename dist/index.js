@@ -52,6 +52,7 @@ app.get('/api/getDashboards', function (req, res) {
 });
 app.get('/api/getDashboard', function (req, res) {
     getDashboard_1.default(req, res, client, redisClient);
+    redisClient.publish("get dashboard", JSON.stringify(res));
 });
 app.get('/api/getData', function (req, res) {
     getData_1.default(req, res, redisClient);

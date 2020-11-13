@@ -1,5 +1,3 @@
-var zmq = require("zeromq"), sock = zmq.socket("pub");
-
 import dashboardQueries from '../queries/dashboardQueries';
 const getDashboard = (req:any, res:any, db:any, cache:any) => {
     
@@ -29,11 +27,6 @@ const getDashboard = (req:any, res:any, db:any, cache:any) => {
                             dashboard,
                             data: JSON.parse(result)
                         })
-                        sock.bindSync("tcp://127.0.0.1:3500");
-                        sock.send({
-                            dashboard,
-                            data: JSON.parse(result)
-                        });
                     }
                 })
                 .catch((e:any) => {
