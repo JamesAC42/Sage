@@ -1,5 +1,4 @@
 import dashboardQueries from '../queries/dashboardQueries';
-
 const getDashboard = (req:any, res:any, db:any, cache:any) => {
     
     const id = req.query.id;

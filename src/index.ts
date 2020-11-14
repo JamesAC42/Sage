@@ -60,6 +60,7 @@ app.get('/api/getDashboards', (req: any, res: any) => {
 
 app.get('/api/getDashboard', (req: any, res: any) => {
     getDashboard(req, res, client, redisClient);
+    redisClient.publish("get dashboard",JSON.stringify(res));
 });
 
 app.get('/api/getData', (req: any, res: any) => {
