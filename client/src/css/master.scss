@@ -10,6 +10,10 @@ a {
   }
 }
 
+hr {
+  border: 0.1px solid $contrast; // This needs a better color
+}
+
 .text-subtle {
   color: $text-subtle;
   & .dark {
@@ -204,9 +208,10 @@ input.text-input {
 
   left: 50%; // Center the container
   transform: translate(-50%);
-  //height: calc(100vh - #{$nav-height} - #{$standard-gutter});
+  //min-height: calc(100vh - #{$nav-height} - 3 * #{$standard-gutter});
 
   margin-bottom: $standard-gutter; // A little bit of space between the container and the bottom of the page
+  padding-bottom: $standard-gutter;
 
   border-radius: $standard-gutter;
   box-shadow: 0 0 1rem 0.1rem rgba(0,0,0,0.1); // Just the slightest of shadows
@@ -255,7 +260,6 @@ input.text-input {
     border: none;
     padding: 0;
     .card-header {
-      background-color: red;
       margin-bottom: -1 * $standard-gutter;
     }
   }
@@ -288,7 +292,7 @@ input.text-input {
   .card {
     box-sizing: border-box;
     margin-left: 0;
-    flex-basis: calc(33.3333% - #{$standard-gutter});
+    flex-basis: calc(25% - #{$standard-gutter});
 
     &:last-child {
       margin-right: 0;
