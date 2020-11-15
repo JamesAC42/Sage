@@ -51,7 +51,18 @@ export default class Explore extends Component {
         return(
           <div>
             <div className="sidebar">
-              test<br /><br /><br /><br /><br />test
+              <div className="search">
+                <input placeholder="Search" type="text"></input>
+              </div>
+
+              <div className="tag-container">
+                <span className="tag">test</span>
+                <span className="tag">test</span>
+                <span className="tag">test</span>
+                <span className="tag selected">test</span>
+                <span className="tag">test</span>
+                <span className="tag">test</span>
+              </div>
             </div>
             <div className="container-wrapper">
               <div className="container">
