@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import DashboardCard from './reusable/DashboardCard';
 
+import '../../css/explore.scss';
+
 export interface IDashboard {
     name:string,
     creator_username:string,
@@ -47,25 +49,31 @@ export default class Explore extends Component {
 
     render() {
         return(
-            <div className="container">
+          <div>
+            <div className="sidebar">
+              test<br /><br /><br /><br /><br />test
+            </div>
+            <div className="container-wrapper">
+              <div className="container">
                 <div className="unbordered card">
                     <div className="container-heading">
                         Dashboards
                     </div>
                 </div>
-                <hr />{/* TODO: Add styling to <hr> element */}
                 <div className="card-deck">
-                    {
-                        this.state.dashboards.map((item, index) =>
-                            <DashboardCard name={item.name}
-                                           url={`/edit/${item.id}`}
-                                           author={item.creator_username}
-                                           previewImageURL="https://via.placeholder.com/150"
-                                           dateModified={this.readable(item.created_on)} />
-                        )
-                    }
+                  {
+                    this.state.dashboards.map((item, index) =>
+                      <DashboardCard name={item.name}
+                                     url={`/edit/${item.id}`}
+                                     author={item.creator_username}
+                                     previewImageURL="https://via.placeholder.com/150"
+                                     dateModified={this.readable(item.created_on)} />
+                    )
+                  }
                 </div>
+              </div>
             </div>
+          </div>
         )
     }
 }
