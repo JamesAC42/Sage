@@ -81,7 +81,7 @@ class Edit extends Component<ParamTypes>{
             "side-panel-visible" : "";
 
         return(
-            <div className="container container-fill flex-row">
+            <div className="container container-fill bg flex-row">
                 <div className="panel control-bar center-child">
                     <div 
                         className="control-item"

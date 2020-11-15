@@ -18,8 +18,8 @@ class ProfileBind extends Component<SessionProps> {
             )
         }
         return(
-          <div>
-            <div className="container">
+          <div className="container container-fill scroll">
+            <div className="container bg">
               <div className="unbordered card">
                 <span className="container-heading">Insert Name </span>
                 <span className="container-heading-subtle"> @username</span>

@@ -90,7 +90,7 @@ export default class Home extends Component {
 		const translate = "translate(-50%, calc(-50% + " + parallax + "vh)) rotate(45deg)";
         return(			
 			<div
-				className="container container-fill scroll"
+				className="container container-fill bg scroll"
 				onScroll={this.handleScroll}>
 
 				<div className="home-content">
