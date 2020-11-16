@@ -12,6 +12,7 @@ import createDashboard from './controllers/createDashboard';
 import getDashboard from './controllers/getDashboard';
 import getDashboards from './controllers/getDashboards';
 import getData from './controllers/getData';
+import getUser from './controllers/getUser';
 
 const auth = require('../auth.json');
 const conString = `postgres://${auth.username}:${auth.password}@localhost:5432/sage`;
@@ -49,6 +50,10 @@ app.post('/api/register', (req: any, res: any) => {
 app.post('/api/createDashboard', (req: any, res: any) => {
     createDashboard(req, res, client, redisClient);
 });
+
+app.get('/api/getUser', (req: any, res: any) => {
+    getUser(req, res, client);
+})
 
 app.get('/api/getSession', getSession);
 

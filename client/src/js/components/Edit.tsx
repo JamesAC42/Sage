@@ -3,7 +3,7 @@ import {
     Redirect
 } from 'react-router-dom';
 
-import { IDashboard } from './Explore';
+import { IDashboard } from './types/Dashboard';
 
 import { RiBracesLine } from 'react-icons/ri';
 import { GoGraph } from 'react-icons/go';

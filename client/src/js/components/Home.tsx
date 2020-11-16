@@ -41,7 +41,7 @@ class Slideshow extends Component<SlideshowProps> {
 				{
 					this.props.reversed ? 
 					<div className="col">
-						<img src={this.props.slides[this.state.active].img} alt={"Image"} />
+						<img src={this.props.slides[this.state.active].img} alt="Slide" />
 					</div> : null
 				}
 				<div className="col slide">
@@ -55,7 +55,7 @@ class Slideshow extends Component<SlideshowProps> {
 				{
 					!this.props.reversed ? 
 					<div className="col">
-						<img src={this.props.slides[this.state.active].img} alt={"Image"} />
+						<img src={this.props.slides[this.state.active].img} alt="Slide" />
 					</div> : null
 				}
 			</div>

@@ -49,7 +49,7 @@ class LogoutBind extends Component<LogoutProps> {
     render() {
         if(this.state.redirect || !this.props.session.loggedin) {
             return(
-                <Redirect to="/home" />
+                <Redirect to="/" />
             )
         } else {
             return null;
