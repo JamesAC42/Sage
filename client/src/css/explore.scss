@@ -36,6 +36,7 @@
       line-height:2em;
 
       padding-left: 0.5em;
+      padding-right: 1.5em; // prevent the text from going underneath the search icon
 
       font-size: 1.2rem;
       color: $text-dark;
@@ -46,6 +47,21 @@
       &:focus {
         border: 1px solid $primary;
       }
+    }
+  }
+
+  .dropdown-list {
+    display: flex;
+    flex-wrap: wrap;
+
+    margin-top: 0.3rem;
+
+    select {
+      padding: 0.5em;
+      border-radius: 5px;
+
+      margin: 0.2rem;
+      flex-grow: 1;
     }
   }
 
