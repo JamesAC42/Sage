@@ -172,6 +172,26 @@ input.text-input {
   }
 }
 
+.tag {
+  display: inline-block;
+
+  padding: 0.2rem 0.7rem;
+
+  border: 1px solid $success;
+  border-radius: 10rem; // Make sure that it is always curved the maximum amount possible
+  color: $success;
+
+  &:hover {
+    background-color: $success;
+    color: $text-light;
+  }
+
+  &.selected {
+    background-color: $success;
+    color: $text-light;
+  }
+}
+
 .modal {
   position:fixed;
   top:50%;
