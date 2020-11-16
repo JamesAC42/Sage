@@ -244,6 +244,7 @@ class CreateInputRouter extends Component<CreateInputRouterProps> {
                 })
             } else {
                 const formData = {...this.state.formValues};
+                formData.type = this.props.active;
                 fetch('/api/createDashboard', {
                     method: 'POST',
                     headers: {

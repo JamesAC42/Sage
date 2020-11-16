@@ -35,7 +35,7 @@ class AppBind extends Component<AppProps> {
     return(
       <div className={
         this.props.settings.darkMode ?
-        "dark" : ""
+        "theme dark" : "theme light"
       }>
 
         <div className="background"></div>

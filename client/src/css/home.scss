@@ -1,0 +1,125 @@
+@import 'settings.scss';
+
+// Row Format 
+.presentation-row {
+    display: flex;
+    flex-direction:row;
+    width:100%;
+    align-items:top;
+
+    &.title {
+        box-shadow:inset 0px -1px 45px -30px #000000;
+    }
+    
+    & > .col {
+        flex:1;
+        margin:10px;
+        padding:0 15px;
+    }
+
+    &.slideshow {
+        height:50vh;
+        align-items:center;
+        justify-content:center;
+        & > .col {
+            height:40vh;
+            display:flex;
+            flex-direction:column;
+            justify-content: center;
+            align-items:center;
+            & > img {
+                height:40vh;
+            }
+        }
+        & > .col:first-child {
+            border-right:1px solid $ui-subtle;
+        }
+    }
+}
+
+div.title-card {
+    width:100vw;
+    height:45vh;
+    position:relative;
+    padding:0;
+    overflow:hidden;
+}
+
+@keyframes slide-in {
+    0% {
+        transform:translate(-50%, -45vh);
+    }
+    100% {
+        transform:translate(-50%, -50%);
+    }
+}
+
+div.title-card-inner {
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    font-size:10em;
+    text-align:center;
+    height:40vh;
+    line-height:40vh;
+    width:100%;
+    animation:slide-in .5s ease-in-out 1;
+    z-index:1000;
+    color:$text-light;
+}
+
+div.title-card-background {
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%) rotate(45deg);
+    width:50vw;
+    height:100vw;
+    background:$contrast;
+    z-index:100;
+    .dark & {
+        background:$contrast-dark;
+    }
+}
+
+div.info-header {
+    height:80px;
+    line-height:80px;
+    text-align:center;
+    font-size:2em;
+    font-family:'Syne';
+    .dark & {
+        color:$ui-light;
+    }
+}
+
+ul.info {
+    color:$text-dark;
+    list-style-type:none;
+    font-size:1em;
+    font-family:'Syne';
+    padding:0;
+    text-align:center;
+    .dark & {
+        color:$ui-light;
+    }
+    .slide & {
+        max-width:60%;
+    }
+}
+
+// Footer Card: Only used for the footer of the homepage 
+.footer-card {
+    margin-top:auto;
+    padding: $standard-gutter;
+    text-align: left;
+    
+    background-color: $contrast;
+    color: white;
+    
+    .dark & {
+        background-color: $contrast-dark;
+        color: $text-light;
+    }
+}
