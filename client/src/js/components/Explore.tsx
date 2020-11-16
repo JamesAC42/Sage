@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import DashboardCard from './reusable/DashboardCard';
 
+import { FaSearch } from 'react-icons/fa';
+
 import '../../css/explore.scss';
 
 export interface IDashboard {
@@ -52,6 +54,7 @@ export default class Explore extends Component {
           <div>
             <div className="sidebar">
               <div className="search">
+                <FaSearch className="search-icon"/>
                 <input placeholder="Search" type="text"></input>
               </div>
 
