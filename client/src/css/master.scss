@@ -234,17 +234,16 @@ input.text-input {
   padding-bottom: $standard-gutter;
 
   border-radius: $standard-gutter;
+  
   box-shadow: 0 0 1rem 0.1rem rgba(0,0,0,0.1); // Just the slightest of shadows
-
+  background-color: $ui-light;
+  color: $text-dark;
   .dark & {
-    box-shadow: 0 0 1rem 0.1rem rgba(8, 8, 8, 0.1); // Just the slightest of shadows
+    background-color: $ui-dark;
+    box-shadow: 0 0 1rem 0.1rem rgba(255,255,255,0.1); // Just the slightest of shadows
+    color: $text-light;
   }
-  &.bg {
-    background-color: $ui-light;
-    .dark & {
-      background-color: $ui-dark;
-    }
-  }
+
   .container-heading {
     font-size: 2rem;
     font-family: 'Syne-Medium';

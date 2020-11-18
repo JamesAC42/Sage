@@ -51,6 +51,15 @@ export default class Explore extends Component {
                 <input placeholder="Search" type="text"></input>
               </div>
 
+              <div className="dropdown-list">
+                <select id="cars" name="cars">
+                  <option value="volvo">Volvo</option>
+                  <option value="saab">Saab</option>
+                  <option value="fiat">Fiat</option>
+                  <option value="audi">Audi</option>
+                </select>
+              </div>
+
               <div className="tag-container">
                 <span className="tag">test</span>
                 <span className="tag">test</span>
