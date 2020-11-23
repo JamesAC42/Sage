@@ -1,4 +1,4 @@
-const odata = (URL: any, cache:any) => {
+const odata = (URL: any) => {
 
 }
 

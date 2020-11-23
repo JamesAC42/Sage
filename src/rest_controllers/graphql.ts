@@ -1,4 +1,4 @@
-const graphql = (URL: any, cache:any) => {
+const graphql = (URL: any) => {
 
 }
 

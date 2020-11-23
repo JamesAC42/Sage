@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
     Redirect
 } from 'react-router-dom';
+import { io } from 'socket.io-client';
 
 import { IDashboard } from './Explore';
 
@@ -19,8 +20,11 @@ const getDashboard = (id:string) => {
 
 interface IDashData {
     data: {},
-    endpoint: string,
-    parameters: string
+    endpoint: {
+        url: string,
+        type: number,
+        parameters: string
+    }
 }
 
 class DashboardState {
@@ -43,7 +47,20 @@ class Edit extends Component<ParamTypes>{
     }
 
     componentDidMount()  {
-        const url = `/api/getDashboard?id=${this.props.match.params.id}`
+
+        const id = this.props.match.params.id;
+
+        const socket = io('http://localhost:3500/', {
+            query: `room=${id}`
+        });
+
+        socket.on('pushData', (data:any) => {
+            this.setState({
+                data: JSON.parse(data)
+            });
+        });
+
+        const url = `/api/getDashboard?id=${id}`
         fetch(url, {
             method: 'GET'
         })
@@ -55,7 +72,7 @@ class Edit extends Component<ParamTypes>{
                     data: data.data
                 })
             }
-        })
+        });
     }
 
     readableDate(date:string) {
@@ -96,9 +113,9 @@ class Edit extends Component<ParamTypes>{
                         </div>
                         {
                         this.state.data.map((item, index) => 
-                            <div>
+                            <div key={index}>
                                 <div className="side-panel-p">
-                                    {item.endpoint}
+                                    {item.endpoint.url}
                                 </div>
                                 <div className="data-container" key={index}>
                                     <pre>

@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import DashboardCard from './reusable/DashboardCard';
 
-import DashboardCard from './reusable/DashboardCard';
-
 export interface IDashboard {
     name:string,
     creator_username:string,

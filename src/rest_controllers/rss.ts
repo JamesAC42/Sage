@@ -1,4 +1,4 @@
-const rss = (URL: any, cache:any) => {
+const rss = (URL: any) => {
 
 }
 

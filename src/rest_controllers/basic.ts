@@ -1,25 +1,34 @@
-const https = require('https')
+const https = require('https');
+import {Endpoint} from '../interfaces/Endpoint';
 
-const basic = (URL: any, cache:any) => {
+const basic = (endpoint: Endpoint) => {
 
-        https.get(URL,(res: any) => {
-        let body = "";
+    return new Promise((resolve: any, reject: any) => {
 
-        res.on("data", (b: any) => {
-            body += b;
+        https.get(endpoint.url,(res: any) => {
+            let body = "";
+
+            res.on("data", (b: any) => {
+                body += b;
+            });
+
+            res.on("end", () => {
+                //console.log("Body result: " + body);
+                try {
+                    let json = JSON.parse(body);
+                    resolve({
+                        endpoint,
+                        data:json
+                    });
+                } catch (error) {
+                    console.error(error.message);
+                    reject(error.message);
+                };
+            });
+        }).on("error", (error:any) => {
+            console.error(error.message);
+            reject(error.message);
         });
-
-        res.on("end", () => {
-            try {
-                let json = JSON.parse(body);
-                // do something with JSON
-            } catch (error) {
-                console.error(error.message);
-            };
-        });
-
-    }).on("error", (error:any) => {
-        console.error(error.message);
     });
 }
 

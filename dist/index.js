@@ -22,8 +22,17 @@ var client = new pg.Client(conString);
 client.connect();
 var RedisStore = require('connect-redis')(session);
 var redisClient = redis.createClient();
+var redisIO = redis.createClient();
 var app = express();
+var server = require('http').createServer(app);
+var io = require('socket.io')(server, {
+    cors: {
+        origin: '*'
+    }
+});
 var port = 3500;
+var socket_1 = require("./socket");
+io.on('connection', socket_1.handleConnection);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 // Note: cookie must have attribute { secure: true }
@@ -52,11 +61,19 @@ app.get('/api/getDashboards', function (req, res) {
 });
 app.get('/api/getDashboard', function (req, res) {
     getDashboard_1.default(req, res, client, redisClient);
-    redisClient.publish("get dashboard", JSON.stringify(res));
 });
 app.get('/api/getData', function (req, res) {
     getData_1.default(req, res, redisClient);
 });
-app.listen(port, function () {
+redisIO.on("message", function (channel, message) {
+    switch (channel) {
+        case "pushData":
+            socket_1.pushData(message, io);
+            break;
+        default:
+    }
+});
+redisIO.subscribe("pushData");
+server.listen(port, function () {
     console.log("Listening at port " + port);
 });

@@ -52,13 +52,10 @@ const createDashboard = (req:any, res:any, db: any, cache:any) => {
         
                 db.query(createDashboard)
                     .then((r: any) => {
-                        cache.set(dashboard_id, JSON.stringify(
-                            [{
-                                endpoint: data.url, 
-                                parameters: data.parameters, 
-                                data: {}
-                            }]
-                        ));
+                        cache.publish("updateData", JSON.stringify({
+                            id:dashboard_id,
+                            endpoints: [endpoint]
+                        }));
                         res.send({
                             id: dashboard_id
                         })

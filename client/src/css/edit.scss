@@ -5,13 +5,13 @@
     width: 0;
   }
   100% {
-    width: 25vw;
+    width: 30vw;
   }
 }
 
 @keyframes contract {
   0% {
-    width:25vw;
+    width:30vw;
   }
   100% {
     width:0;
@@ -49,16 +49,17 @@
     width:0;
     animation:contract .2s ease-in-out 1;
     & .side-panel-inner {
-      width: 25vw;
+      width: 30vw;
       
       & .side-panel-p {
         margin-top: 20px;
+        margin-bottom: 10px;
         text-align: center;
       }
 
     }
     &.side-panel-visible {
-      width:25vw;
+      width:30vw;
       animation:expand 0.2s ease-in-out 1;
     }
   }
@@ -100,11 +101,12 @@
 }
 
 .data-container {
-  margin: 15px;
-  padding: 5px 15px;
+  margin:0;
+  padding:5px 15px;
+  width:calc(100% - 30px);
   background: rgb(31, 32, 56);
   color: rgb(61, 233, 181);
-  border-radius: 5px;
+  border-radius: 0px;
   .dark & {
     background: rgb(16, 18, 26);
     color: rgb(65, 253, 149);
@@ -113,7 +115,8 @@
     font-family: OverpassMono;
     white-space: pre-wrap;
     word-wrap: break-word;
-    font-size: 16px;
+    font-size: 14px;
+    padding-right:17px;
   }
 }
 

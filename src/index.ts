@@ -20,9 +20,20 @@ client.connect();
 
 const RedisStore = require('connect-redis')(session);
 const redisClient = redis.createClient();
+const redisIO = redis.createClient();
 
 const app = express();
+const server = require('http').createServer(app);
+const io = require('socket.io')(server, {
+    cors: {
+        origin: '*'
+    }
+});
 const port = 3500;
+
+import { handleConnection, pushData } from './socket';
+
+io.on('connection', handleConnection);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -60,13 +71,23 @@ app.get('/api/getDashboards', (req: any, res: any) => {
 
 app.get('/api/getDashboard', (req: any, res: any) => {
     getDashboard(req, res, client, redisClient);
-    redisClient.publish("get dashboard",JSON.stringify(res));
 });
 
 app.get('/api/getData', (req: any, res: any) => {
     getData(req, res, redisClient);
 });
 
-app.listen(port, () => {
+redisIO.on("message", (channel:string, message: string) => {
+    switch(channel) {
+        case "pushData":
+            pushData(message, io);
+            break;
+        default:
+    }
+});
+
+redisIO.subscribe("pushData");
+
+server.listen(port, () => {
     console.log(`Listening at port ${port}`);
 });

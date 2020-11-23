@@ -18,16 +18,16 @@ const rest = (req:any, res:any, db:any, cache:any) => {
         const type = message.dashboard.endpoint.type;
 
         if (type === EndpointTypes.Basic) {
-            basic(URL, cache);
+            basic(URL);
         }
         if (type === EndpointTypes.GraphQL) {
-            graphql(URL, cache);
+            graphql(URL);
         }
         if (type === EndpointTypes.ODATA) {
-            odata(URL, cache);
+            odata(URL);
         }
         if (type === EndpointTypes.RSS) {
-            rss(URL, cache);
+            rss(URL);
         }
     })
     
