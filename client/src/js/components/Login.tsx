@@ -97,6 +97,8 @@ class LoginBind extends Component<LoginProps> {
 
     register = () => {
         if(
+            this.state.register.firstname === '' ||
+            this.state.register.lastname === '' ||
             this.state.register.email === '' ||
             this.state.register.username === '' ||
             this.state.register.password === '' ||
@@ -210,18 +212,38 @@ class LoginBind extends Component<LoginProps> {
                         </div>
                         <div className="login-input-container flex-col flex-stretch">
                             
-                            <div className="input-label">Email Address</div>
-                            <InputItem 
-                                value={this.state.register.email} 
-                                maxLength={250} 
-                                name={"email"}
-                                updateValue={this.updateRegisterValues} />
+                            <div className="name-row flex-row flex-stretch">
+                                <div>
+                                    <div className="input-label">First Name</div>
+                                    <InputItem 
+                                        value={this.state.register.firstname} 
+                                        maxLength={100} 
+                                        name={"firstname"}
+                                        updateValue={this.updateRegisterValues} />
+                                </div>
+                                <div>
+                                    <div className="input-label">Last Name</div>
+                                    <InputItem 
+                                        value={this.state.register.lastname}
+                                        maxLength={100}
+                                        name={"lastname"}
+                                        updateValue={this.updateRegisterValues} />
+                                </div>
+
+                            </div>
 
                             <div className="input-label">Username</div>
                             <InputItem 
                                 value={this.state.register.username}
                                 maxLength={50}
                                 name={"username"}
+                                updateValue={this.updateRegisterValues} />
+                                
+                            <div className="input-label">Email Address</div>
+                            <InputItem 
+                                value={this.state.register.email} 
+                                maxLength={250} 
+                                name={"email"}
                                 updateValue={this.updateRegisterValues} />
 
                             <div className="input-label">Password</div>

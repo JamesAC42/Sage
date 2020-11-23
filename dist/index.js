@@ -16,6 +16,7 @@ var createDashboard_1 = __importDefault(require("./controllers/createDashboard")
 var getDashboard_1 = __importDefault(require("./controllers/getDashboard"));
 var getDashboards_1 = __importDefault(require("./controllers/getDashboards"));
 var getData_1 = __importDefault(require("./controllers/getData"));
+var getUser_1 = __importDefault(require("./controllers/getUser"));
 var auth = require('../auth.json');
 var conString = "postgres://" + auth.username + ":" + auth.password + "@localhost:5432/sage";
 var client = new pg.Client(conString);
@@ -53,6 +54,9 @@ app.post('/api/register', function (req, res) {
 });
 app.post('/api/createDashboard', function (req, res) {
     createDashboard_1.default(req, res, client, redisClient);
+});
+app.get('/api/getUser', function (req, res) {
+    getUser_1.default(req, res, client);
 });
 app.get('/api/getSession', getSession_1.default);
 app.get('/api/destroySession', destroySession_1.default);

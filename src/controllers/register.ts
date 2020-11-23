@@ -6,7 +6,9 @@ import userQueries from '../queries/userQueries';
 
 const register = (req: any, res: any, db: any) => {
 
-    const { 
+    const {
+        firstname,
+        lastname,
         username,
         email,
         password,
@@ -78,6 +80,8 @@ const register = (req: any, res: any, db: any) => {
                         text: userQueries.createUser,
                         values: [
                             id,
+                            firstname,
+                            lastname,
                             username,
                             hash,
                             email,

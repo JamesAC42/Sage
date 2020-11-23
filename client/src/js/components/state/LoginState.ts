@@ -4,6 +4,8 @@ interface ILogin {
 }
 
 interface IRegister {
+    firstname: string,
+    lastname: string,
     email:string,
     username:string,
     password:string,
@@ -26,6 +28,8 @@ class LoginState implements ILoginState {
             password: '',
         }
         this.register = {
+            firstname: '',
+            lastname: '',
             email: '',
             username: '',
             password: '',

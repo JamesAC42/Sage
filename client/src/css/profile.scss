@@ -8,10 +8,37 @@
   margin-left: auto;
   font-size: 1rem;
   align-self: center;
+  & a {
+    color:$ui-dark;
+    .dark & {
+      color:$ui-light;
+    }
+  }
 }
 
 
 .preview {
   width: 100%;
   box-sizing: border-box;
+}
+
+
+.profile-header {
+  display: flex;
+  .left {
+    border-right: 0.2px solid $contrast;
+    padding-right: $standard-gutter;
+  }
+  .right {
+    padding-left: $standard-gutter;
+  }
+}
+
+.creation-date {
+  padding:5px 0;
+}
+
+.profile-picture {
+  border-radius: 0.5rem;
+  width:150px;
 }

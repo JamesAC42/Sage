@@ -10,6 +10,10 @@ a {
   }
 }
 
+hr {
+  border: 0.1px solid $contrast; // This needs a better color
+}
+
 .text-subtle {
   color: $text-subtle;
   & .dark {
@@ -168,6 +172,26 @@ input.text-input {
   }
 }
 
+.tag {
+  display: inline-block;
+
+  padding: 0.2rem 0.7rem;
+
+  border: 1px solid $success;
+  border-radius: 10rem; // Make sure that it is always curved the maximum amount possible
+  color: $success;
+
+  &:hover {
+    background-color: $success;
+    color: $text-light;
+  }
+
+  &.selected {
+    background-color: $success;
+    color: $text-light;
+  }
+}
+
 .modal {
   position:fixed;
   top:50%;
@@ -204,22 +228,25 @@ input.text-input {
 
   left: 50%; // Center the container
   transform: translate(-50%);
-  height: calc(100vh - #{$nav-height} - #{$standard-gutter});
+  //min-height: calc(100vh - #{$nav-height} - 3 * #{$standard-gutter});
 
   margin-bottom: $standard-gutter; // A little bit of space between the container and the bottom of the page
+  padding-bottom: $standard-gutter;
 
   border-radius: $standard-gutter;
+  
   box-shadow: 0 0 1rem 0.1rem rgba(0,0,0,0.1); // Just the slightest of shadows
-
   background-color: $ui-light;
+  color: $text-dark;
   .dark & {
     background-color: $ui-dark;
     box-shadow: 0 0 1rem 0.1rem rgba(255,255,255,0.1); // Just the slightest of shadows
+    color: $text-light;
   }
 
   .container-heading {
     font-size: 2rem;
-    font-weight: bolder;
+    font-family: 'Syne-Medium';
   }
   .container-heading-subtle {
     font-weight: lighter;
@@ -252,7 +279,6 @@ input.text-input {
     border: none;
     padding: 0;
     .card-header {
-      background-color: red;
       margin-bottom: -1 * $standard-gutter;
     }
   }
@@ -266,7 +292,7 @@ input.text-input {
 
   .card-header {
     font-size: 1.5rem;
-    font-weight: bold;
+    font-family: 'Syne-Medium';
   }
 }
 
@@ -285,7 +311,7 @@ input.text-input {
   .card {
     box-sizing: border-box;
     margin-left: 0;
-    flex-basis: calc(33.3333% - #{$standard-gutter});
+    flex-basis: calc(25% - #{$standard-gutter});
 
     &:last-child {
       margin-right: 0;

@@ -8,7 +8,7 @@ var uuid = require('uuid').v4;
 var validateEmail_1 = __importDefault(require("../validateEmail"));
 var userQueries_1 = __importDefault(require("../queries/userQueries"));
 var register = function (req, res, db) {
-    var _a = req.body, username = _a.username, email = _a.email, password = _a.password, passwordConfirm = _a.passwordConfirm;
+    var _a = req.body, firstname = _a.firstname, lastname = _a.lastname, username = _a.username, email = _a.email, password = _a.password, passwordConfirm = _a.passwordConfirm;
     if (password !== passwordConfirm) {
         res.send({
             success: false,
@@ -69,6 +69,8 @@ var register = function (req, res, db) {
                     text: userQueries_1.default.createUser,
                     values: [
                         id,
+                        firstname,
+                        lastname,
                         username,
                         hash,
                         email,

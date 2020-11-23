@@ -4,7 +4,7 @@ import {
 } from 'react-router-dom';
 import { io } from 'socket.io-client';
 
-import { IDashboard } from './Explore';
+import { IDashboard } from './types/Dashboard';
 
 import { RiBracesLine } from 'react-icons/ri';
 import { GoGraph } from 'react-icons/go';
@@ -98,7 +98,7 @@ class Edit extends Component<ParamTypes>{
             "side-panel-visible" : "";
 
         return(
-            <div className="container container-fill flex-row">
+            <div className="container container-fill bg flex-row">
                 <div className="panel control-bar center-child">
                     <div 
                         className="control-item"

@@ -41,7 +41,7 @@ class Slideshow extends Component<SlideshowProps> {
 				{
 					this.props.reversed ? 
 					<div className="col">
-						<img src={this.props.slides[this.state.active].img} alt={"Image"} />
+						<img src={this.props.slides[this.state.active].img} alt="Slide" />
 					</div> : null
 				}
 				<div className="col slide">
@@ -55,7 +55,7 @@ class Slideshow extends Component<SlideshowProps> {
 				{
 					!this.props.reversed ? 
 					<div className="col">
-						<img src={this.props.slides[this.state.active].img} alt={"Image"} />
+						<img src={this.props.slides[this.state.active].img} alt="Slide" />
 					</div> : null
 				}
 			</div>
@@ -90,7 +90,7 @@ export default class Home extends Component {
 		const translate = "translate(-50%, calc(-50% + " + parallax + "vh)) rotate(45deg)";
         return(			
 			<div
-				className="container container-fill scroll"
+				className="container container-fill bg scroll"
 				onScroll={this.handleScroll}>
 
 				<div className="home-content">
