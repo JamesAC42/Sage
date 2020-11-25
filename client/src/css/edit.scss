@@ -1,20 +1,22 @@
 @import "settings.scss";
 
-@keyframes expand {
+$control-bar-width: 4rem;
+
+@keyframes expandSidebar {
   0% {
-    width: 0;
+    left: $control-bar-width;
   }
   100% {
-    width: 25vw;
+    left: -30vw;
   }
 }
 
-@keyframes contract {
+@keyframes contractSidebar {
   0% {
-    width:25vw;
+    left: -30vw;
   }
   100% {
-    width:0;
+    left: $control-bar-width;
   }
 }
 
@@ -27,39 +29,45 @@
 
   overflow-x: hidden;
 
-  & .panel-header {
-    height: 80px;
-    width: calc(100% - 60px);
-    padding: 0 30px;
-    line-height: 100px;
-    font-size: 30px;
+  .panel-header {
+    width: calc(100%);
+    padding: $standard-gutter;
+    padding-bottom: 0.5rem;
+
+    font-size: 2rem;
     border-bottom: 1px solid $ui-subtle;
     .dark & {
       border-color: $ui-dark-subtle;
     }
-    &.subheader {
-      border:none;
-      height:40px;
-      line-height:50px;
-      font-size:20px;
+
+    .subtle {
+      margin-left: 0.5rem;
+
+      font-weight: lighter;
+      font-size: 1.2rem;
+      color: $text-subtle;
     }
   }
-  
+
   &.side-panel {
-    width:0;
-    animation:contract .2s ease-in-out 1;
-    & .side-panel-inner {
-      width: 25vw;
-      
-      & .side-panel-p {
+    position: fixed;
+    left: $control-bar-width;
+    width: 30vw;
+
+    z-index: 1;
+    background-color: $ui-light;
+    box-shadow: 0 0 32px -14px $shadow-color;
+
+    animation: contractSidebar .2s ease-in-out 1;
+    .side-panel-inner {
+      .side-panel-p {
         margin-top: 20px;
         text-align: center;
       }
-
     }
     &.side-panel-visible {
-      width:25vw;
-      animation:expand 0.2s ease-in-out 1;
+      left: -30vw;
+      animation: expandSidebar 0.2s ease-in-out 1;
     }
   }
 
@@ -68,7 +76,8 @@
   }
 
   &.control-bar {
-    width:80px;
+    z-index: 2;
+    width: $control-bar-width;
     background:$contrast;
     border:none;
 
@@ -76,19 +85,19 @@
       background:$contrast-dark;
     }
 
-    & .control-item {
-      height: 50px;
-      line-height: 60px;
-      text-align:center;
-      width:50px;
-      border-radius:50%;
-      border:2px solid $ui-subtle;
-      font-size:30px;
-      color:$text-light;
-      cursor:pointer;
-      transition:opacity .1s ease-in;
+    .control-item {
+      height: $control-bar-width;
+      line-height: $control-bar-width;
+      text-align: center;
+      width: $control-bar-width;
+      border-radius: 50%;
+      border: 2px solid $ui-subtle;
+      font-size: $control-bar-width / 2;
+      color: $text-light;
+      cursor: pointer;
+      transition: opacity .1s ease-in;
       &:hover {
-        opacity:0.5;
+        opacity: 0.5;
       }
     }
   }

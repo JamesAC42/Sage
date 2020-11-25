@@ -5,7 +5,7 @@ import {
 
 import { IDashboard } from './Explore';
 
-import { RiBracesLine } from 'react-icons/ri';
+import { RiBracesLine, RiMenuLine } from 'react-icons/ri';
 import { GoGraph } from 'react-icons/go';
 import '../../css/edit.scss';
 
@@ -83,19 +83,19 @@ class Edit extends Component<ParamTypes>{
         return(
             <div className="container container-fill bg flex-row">
                 <div className="panel control-bar center-child">
-                    <div 
+                    <div
                         className="control-item"
                         onClick={this.toggleSidePanel}>
-                        <RiBracesLine />
+                        <RiMenuLine />
                     </div>
                 </div>
                 <div className={`panel side-panel ${sidePanelClass}`}>
                     <div className="side-panel-inner flex-col">
                         <div className="panel-header">
-                            Data 
+                            Data
                         </div>
                         {
-                        this.state.data.map((item, index) => 
+                        this.state.data.map((item, index) =>
                             <div>
                                 <div className="side-panel-p">
                                     {item.endpoint}
@@ -112,13 +112,11 @@ class Edit extends Component<ParamTypes>{
                 </div>
                 <div className="panel main-panel">
                     <div className="panel-header">
+                        Dashboard Name
                         {this.state.dashboard.name}
-                    </div>
-                    <div className="panel-header subheader">
-                        Created on: {this.readableDate(this.state.dashboard.created_on)}
-                    </div>
-                    <div className="panel-header subheader">
-                        Creator: {this.state.dashboard.creator_username}
+                        <span className="subtle">
+                            {this.readableDate(this.state.dashboard.created_on)}
+                        </span>
                     </div>
                     <div className="edit-space">
                         <div className="visual"><GoGraph /></div>
