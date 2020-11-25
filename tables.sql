@@ -16,5 +16,8 @@ CREATE TABLE public.users
     email character varying(200) COLLATE pg_catalog."default" NOT NULL,
     password character varying(200) COLLATE pg_catalog."default" NOT NULL,
     created_on timestamp with time zone NOT NULL,
-    verified boolean NOT NULL
+    verified boolean NOT NULL,
+    first_name character varying(100) COLLATE pg_catalog."default" NOT NULL,
+    last_name character varying(100) COLLATE pg_catalog."default" NOT NULL,
+    profile character varying(500) COLLATE pg_catalog."default"
 )

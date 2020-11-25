@@ -2,18 +2,11 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import DashboardCard from './reusable/DashboardCard';
 
+import { IDashboard } from './types/Dashboard';
+
 import { FaSearch } from 'react-icons/fa';
 
 import '../../css/explore.scss';
-
-export interface IDashboard {
-    name:string,
-    creator_username:string,
-    creator_id:string,
-    created_on:string,
-    endpoints:string,
-    id:string
-}
 
 class ExploreState {
     dashboards:Array<IDashboard>;

@@ -15,7 +15,7 @@ export default class DashboardCard extends Component<DashboardCardProps> {
     render() {
         return(
             <div className="card dashboard-card">
-              <img className="card-image-top preview" src={this.props.previewImageURL}></img>
+              <img className="card-image-top preview" alt="preview" src={this.props.previewImageURL}></img>
               <div className="date-overlay">{this.props.dateModified}</div>
               <div className="card-header">
                 <Link to={this.props.url} className="link">{this.props.name}</Link>

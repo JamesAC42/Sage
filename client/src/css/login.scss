@@ -1,16 +1,5 @@
 @import 'settings.scss';
 
-.login-modal {
-  height: 60vh;
-  width: 60vw;
-  justify-content: center;
-}
-
-div.login, div.register {
-  flex: 1;
-  justify-content: center;
-}
-
 div.login {
   border-right: 2px solid $contrast;
   .dark & {
@@ -25,16 +14,19 @@ div.login-header, div.register-header {
 }
 
 div.login-input-container {
-  height: 30vh;
+  display:flex;
+  flex:1;
   justify-content: center;
   padding:0 50px;
+  .name-row {
+    gap:1em;
+  }
 }
 
 div.login-submit-container {
-  height: 10vh;
+  height: 100px;
   
   @media only screen and (max-height: $medium-height) {
-    margin-top: auto;
   }
 }
 

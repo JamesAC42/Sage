@@ -41,7 +41,7 @@ class Slideshow extends Component<SlideshowProps> {
 				{
 					this.props.reversed ? 
 					<div className="col">
-						<img src={this.props.slides[this.state.active].img} alt={"Image"} />
+						<img src={this.props.slides[this.state.active].img} alt="Slide" />
 					</div> : null
 				}
 				<div className="col slide">
@@ -55,7 +55,7 @@ class Slideshow extends Component<SlideshowProps> {
 				{
 					!this.props.reversed ? 
 					<div className="col">
-						<img src={this.props.slides[this.state.active].img} alt={"Image"} />
+						<img src={this.props.slides[this.state.active].img} alt="Slide" />
 					</div> : null
 				}
 			</div>
@@ -144,11 +144,23 @@ export default class Home extends Component {
 
 				<div className="footer-card"> 
 					<div className="row">
+						<div>SAGE</div>
+						<div>800-000-000</div>
+						<div>Troy, NY</div>
+					</div>
+					<div className="presentation-row links">
+						{/* column 1 */}
 						<div className="col">
-							<h4>SAGE</h4>
-							<ul>800-000-000</ul>
-							<ul>Troy, NY</ul>
-						</div>	
+							<div> SOMETHING </div>
+						</div>
+						{/* column 2 */}
+						<div className="col">
+							<div> SOMETHING </div>
+						</div>
+						{/* column 3*/}
+						<div className="col">
+							<div> SOMETHING </div>
+						</div>
 					</div>
 					<hr />
 					<div className="row">
