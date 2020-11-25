@@ -129,7 +129,6 @@ class Edit extends Component<ParamTypes>{
                 </div>
                 <div className="panel main-panel">
                     <div className="panel-header">
-                        Dashboard Name
                         {this.state.dashboard.name}
                         <span className="subtle">
                             {this.readableDate(this.state.dashboard.created_on)}

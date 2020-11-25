@@ -10,15 +10,36 @@
     margin-left: -1 * $standard-gutter;
     margin-top: -1 * $standard-gutter;
     width: calc(100% + 2 * #{$standard-gutter});
+    min-height:calc(10 * #{$standard-gutter});
     border-radius: 0.5rem 0.5rem 0 0;
+    background:$ui-subtle;
+    
+    .dark & {
+      background: $ui-dark-subtle;
+    }
+    
+    img {
+      max-width:100%;
+    }
+  }
+  
+  .card-header {
+    padding-top:0.5rem;
   }
 
   &:hover {
     transition: .1s ease-in-out;
-    box-shadow: 0 0 1rem 0.2rem rgba(0,0,0,0.2); // Make the card "pop out" when it is hovered over
-
+    //box-shadow: 0 0 1rem 0.2rem rgba(0,0,0,0.2); // Make the card "pop out" when it is hovered over
+    transform:translateY(-0.2rem);
     .date-overlay {
       visibility: visible;
+    }
+  }
+
+  & a {
+    color:$primary;
+    &:hover { 
+      text-decoration: none;
     }
   }
 
@@ -35,6 +56,10 @@
     border-radius: 0 0.5rem 0 0.2rem;
     box-shadow: 0 0 1rem 0.2rem rgba(0,0,0,0.2); // Make the card "pop out" when it is hovered over
     background-color: $ui-light;
+    .dark & {
+      background-color: $ui-dark;
+      color:$text-light;
+    }
   }
 
   // TODO: Fix this such that it successfully removes the styles.  Link doesn't appear to just be an <a>

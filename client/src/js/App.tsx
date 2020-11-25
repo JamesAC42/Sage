@@ -38,6 +38,7 @@ class AppBind extends Component<AppProps> {
         "dark" : "light"
       }>
 
+        <div className="stripe"></div>
         <div className="background"></div>
 
         <SessionHandler />
