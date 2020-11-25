@@ -35,7 +35,7 @@ class AppBind extends Component<AppProps> {
     return(
       <div className={
         this.props.settings.darkMode ?
-        "theme dark" : "theme light"
+        "dark" : "light"
       }>
 
         <div className="background"></div>
@@ -46,32 +46,32 @@ class AppBind extends Component<AppProps> {
 
         <Switch>
 
-          <Route 
-            exact 
-            path="/" 
+          <Route
+            exact
+            path="/"
             component={Home}/>
 
-          <Route 
+          <Route
             exact
             path="/profile"
             component={Profile}/>
-          
-          <Route 
+
+          <Route
             exact
             path="/explore"
             component={Explore}/>
-          
-          <Route 
+
+          <Route
             exact
             path="/login"
             component={Login}/>
-            
-          <Route 
+
+          <Route
             exact
             path="/create"
             component={Create}/>
-            
-          <Route 
+
+          <Route
             exact
             path="/logout"
             component={Logout}/>
