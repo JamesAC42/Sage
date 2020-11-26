@@ -45,7 +45,12 @@ $control-bar-width: 4rem;
 
       font-weight: lighter;
       font-size: 1.2rem;
-      color: $text-subtle;
+      color: lighten($text-subtle, 20%);
+    }
+
+    .right {
+      position: absolute;
+      right: $standard-gutter;
     }
   }
 
@@ -82,28 +87,32 @@ $control-bar-width: 4rem;
   &.control-bar {
     z-index: 2;
     width: $control-bar-width;
-    background:$contrast;
-    border:none;
+    background: $contrast;
+    border: none;
 
     margin-left:-1px;
 
     .dark & {
-      background:$contrast-dark;
+      background: $contrast-dark;
     }
 
     .control-item {
-      height: calc(#{$control-bar-width} - 1em);
-      line-height: calc(#{$control-bar-width} - 0.6em);
-      text-align: center;
-      width: calc(#{$control-bar-width} - 1em);
-      border-radius: 50%;
-      border: 2px solid $ui-subtle;
-      font-size: $control-bar-width / 3;
+      box-sizing: border-box; // Align border with border of header
+      height: $control-bar-width;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      width: 100%;
+      font-size: $control-bar-width / 2;
       color: $text-light;
       cursor: pointer;
-      transition: opacity .1s ease-in;
+      transition: .1s ease-in;
       &:hover {
-        opacity: 0.5;
+        background-color: lighten($contrast, 5%); // Make it slightly lighter
+      }
+      &:first-of-type {
+        border-bottom: 1px solid $ui-subtle;
       }
     }
   }

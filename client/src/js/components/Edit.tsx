@@ -6,7 +6,7 @@ import { io } from 'socket.io-client';
 
 import { IDashboard } from './types/Dashboard';
 
-import { RiBracesLine, RiMenuLine } from 'react-icons/ri';
+import { RiBracesLine, RiMenuLine, RiAddLine, RiCloseLine } from 'react-icons/ri';
 import { GoGraph } from 'react-icons/go';
 import '../../css/edit.scss';
 
@@ -82,7 +82,7 @@ class Edit extends Component<ParamTypes>{
 
     toggleSidePanel = () => {
         this.setState({
-            sidePanelVisible: !this.state.sidePanelVisible
+            sidePanelVisible: !this.state.sidePanelVisible,
         })
     }
 
@@ -96,20 +96,26 @@ class Edit extends Component<ParamTypes>{
 
         const sidePanelClass = this.state.sidePanelVisible ?
             "side-panel-visible" : "";
+        const sidePanelControlIcon = this.state.sidePanelVisible ?
+            <RiMenuLine /> : <RiCloseLine />;
 
         return(
             <div className="container container-fill bg flex-row">
-                <div className="panel control-bar center-child">
+                <div className="panel control-bar">
                     <div
-                        className="control-item"
+                        className={`control-item ${sidePanelClass}`}
                         onClick={this.toggleSidePanel}>
+                        {sidePanelControlIcon}
+                    </div>
+                    <div className="control-item">
                         <RiMenuLine />
                     </div>
                 </div>
                 <div className={`panel side-panel ${sidePanelClass}`}>
                     <div className="side-panel-inner flex-col">
                         <div className="panel-header">
-                            Data
+                            <span>Data</span>
+                            <span className="right"><RiAddLine /></span>
                         </div>
                         {
                         this.state.data.map((item, index) => 
