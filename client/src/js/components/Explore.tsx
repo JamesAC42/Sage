@@ -67,6 +67,14 @@ export default class Explore extends Component {
                 <span className="tag selected">test</span>
                 <span className="tag">test</span>
                 <span className="tag">test</span>
+                <span className="tag">test</span>
+                <span className="tag selected">test</span>
+                <span className="tag">test</span>
+                <span className="tag">test</span>
+                <span className="tag">test</span>
+                <span className="tag selected">test</span>
+                <span className="tag">test</span>
+                <span className="tag">test</span>
               </div>
             </div>
             <div className="container-wrapper">

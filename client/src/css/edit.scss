@@ -22,9 +22,9 @@ $control-bar-width: 4rem;
 
 .panel {
   margin: 0;
-  height: 100%;
+  height: calc(100vh - #{$nav-height});
 
-  border-right: 1px solid $ui-subtle;
+  //border-right: 1px solid $ui-subtle;
   color: $text-dark;
 
   overflow-x: hidden;
@@ -61,7 +61,7 @@ $control-bar-width: 4rem;
 
     z-index: 1;
     background-color: $ui-light;
-    box-shadow: 0 0 32px -14px $shadow-color;
+    box-shadow: 0 0 50px -14px $shadow-color;
 
     animation: contractSidebar .2s ease-in-out 1;
     .side-panel-inner {
@@ -75,6 +75,9 @@ $control-bar-width: 4rem;
       left: -30vw;
       animation: expandSidebar 0.2s ease-in-out 1;
     }
+    .dark & {
+      background:$ui-dark;
+    }
   }
 
   &.main-panel {
@@ -86,6 +89,8 @@ $control-bar-width: 4rem;
     width: $control-bar-width;
     background: $contrast;
     border: none;
+
+    margin-left:-1px;
 
     .dark & {
       background: $contrast-dark;

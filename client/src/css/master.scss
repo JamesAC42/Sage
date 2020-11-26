@@ -181,6 +181,9 @@ input.text-input {
   border-radius: 10rem; // Make sure that it is always curved the maximum amount possible
   color: $success;
 
+  cursor:pointer;
+  transition:.1s ease-in-out;
+
   &:hover {
     background-color: $success;
     color: $text-light;
@@ -240,7 +243,7 @@ input.text-input {
   color: $text-dark;
   .dark & {
     background-color: $ui-dark;
-    box-shadow: 0 0 1rem 0.1rem rgba(255,255,255,0.1); // Just the slightest of shadows
+    box-shadow: 0 0 1rem 0.1rem rgba(0, 0, 0, 0.308); // Just the slightest of shadows
     color: $text-light;
   }
 
@@ -258,10 +261,14 @@ input.text-input {
     }
   }
   &.container-fill {
+    margin:0;
     width:100%;
     top:$nav-height;
     border-radius: 0;
-    height: calc(100vh - #{$nav-height});
+    height: calc(100vh - #{$nav-height} - 1rem);
+    .dark & {
+      background: $ui-dark;
+    }
   }
 }
 
