@@ -16,14 +16,24 @@ var createDashboard_1 = __importDefault(require("./controllers/createDashboard")
 var getDashboard_1 = __importDefault(require("./controllers/getDashboard"));
 var getDashboards_1 = __importDefault(require("./controllers/getDashboards"));
 var getData_1 = __importDefault(require("./controllers/getData"));
+var getUser_1 = __importDefault(require("./controllers/getUser"));
 var auth = require('../auth.json');
 var conString = "postgres://" + auth.username + ":" + auth.password + "@localhost:5432/sage";
 var client = new pg.Client(conString);
 client.connect();
 var RedisStore = require('connect-redis')(session);
 var redisClient = redis.createClient();
+var redisIO = redis.createClient();
 var app = express();
+var server = require('http').createServer(app);
+var io = require('socket.io')(server, {
+    cors: {
+        origin: '*'
+    }
+});
 var port = 3500;
+var socket_1 = require("./socket");
+io.on('connection', socket_1.handleConnection);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 // Note: cookie must have attribute { secure: true }
@@ -45,6 +55,9 @@ app.post('/api/register', function (req, res) {
 app.post('/api/createDashboard', function (req, res) {
     createDashboard_1.default(req, res, client, redisClient);
 });
+app.get('/api/getUser', function (req, res) {
+    getUser_1.default(req, res, client);
+});
 app.get('/api/getSession', getSession_1.default);
 app.get('/api/destroySession', destroySession_1.default);
 app.get('/api/getDashboards', function (req, res) {
@@ -56,6 +69,15 @@ app.get('/api/getDashboard', function (req, res) {
 app.get('/api/getData', function (req, res) {
     getData_1.default(req, res, redisClient);
 });
-app.listen(port, function () {
+redisIO.on("message", function (channel, message) {
+    switch (channel) {
+        case "pushData":
+            socket_1.pushData(message, io);
+            break;
+        default:
+    }
+});
+redisIO.subscribe("pushData");
+server.listen(port, function () {
     console.log("Listening at port " + port);
 });

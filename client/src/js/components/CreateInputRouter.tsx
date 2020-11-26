@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
-import { textChangeRangeIsUnchanged } from 'typescript';
 
 import validateUrl from '../validateUrl';
 

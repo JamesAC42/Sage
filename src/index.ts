@@ -12,6 +12,7 @@ import createDashboard from './controllers/createDashboard';
 import getDashboard from './controllers/getDashboard';
 import getDashboards from './controllers/getDashboards';
 import getData from './controllers/getData';
+import getUser from './controllers/getUser';
 
 const auth = require('../auth.json');
 const conString = `postgres://${auth.username}:${auth.password}@localhost:5432/sage`;
@@ -20,9 +21,20 @@ client.connect();
 
 const RedisStore = require('connect-redis')(session);
 const redisClient = redis.createClient();
+const redisIO = redis.createClient();
 
 const app = express();
+const server = require('http').createServer(app);
+const io = require('socket.io')(server, {
+    cors: {
+        origin: '*'
+    }
+});
 const port = 3500;
+
+import { handleConnection, pushData } from './socket';
+
+io.on('connection', handleConnection);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -50,6 +62,10 @@ app.post('/api/createDashboard', (req: any, res: any) => {
     createDashboard(req, res, client, redisClient);
 });
 
+app.get('/api/getUser', (req: any, res: any) => {
+    getUser(req, res, client);
+})
+
 app.get('/api/getSession', getSession);
 
 app.get('/api/destroySession', destroySession);
@@ -66,6 +82,17 @@ app.get('/api/getData', (req: any, res: any) => {
     getData(req, res, redisClient);
 });
 
-app.listen(port, () => {
+redisIO.on("message", (channel:string, message: string) => {
+    switch(channel) {
+        case "pushData":
+            pushData(message, io);
+            break;
+        default:
+    }
+});
+
+redisIO.subscribe("pushData");
+
+server.listen(port, () => {
     console.log(`Listening at port ${port}`);
 });

@@ -1,0 +1,25 @@
+ENDPOINT
+________
+type                int
+url                 string
+parameters          string
+
+
+
+
+DATABASE
+________
+id                  uuid
+name                string
+creator_id          uuid
+created_on          date
+endpoints           string (JSON list of endpoints)
+creator_username    string
+
+
+
+
+CACHE
+________
+endpoint            endpoint
+data                {}

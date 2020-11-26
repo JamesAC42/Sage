@@ -113,7 +113,7 @@ ul.info {
 .footer-card {
     margin-top:auto;
     padding: $standard-gutter;
-    text-align: left;
+    text-align: center;
     
     background-color: $contrast;
     color: white;
@@ -122,4 +122,14 @@ ul.info {
         background-color: $contrast-dark;
         color: $text-light;
     }
+
+    .links {
+        height: 30vh;
+    } 
+}
+
+.col-1 {
+    flex:1;
+    margin:10px;
+    padding:0 15px;
 }
