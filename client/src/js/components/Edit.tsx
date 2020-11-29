@@ -5,8 +5,11 @@ import {
 import { io } from 'socket.io-client';
 
 import { IDashboard } from './types/Dashboard';
+import { IEndpoint } from './types/Endpoint';
 
-import { RiBracesLine, RiMenuLine, RiAddLine, RiCloseLine } from 'react-icons/ri';
+import DataItem from './DataItem';
+
+import { RiMenuLine, RiAddLine, RiCloseLine } from 'react-icons/ri';
 import { GoGraph } from 'react-icons/go';
 import '../../css/edit.scss';
 
@@ -20,11 +23,7 @@ const getDashboard = (id:string) => {
 
 interface IDashData {
     data: {},
-    endpoint: {
-        url: string,
-        type: number,
-        parameters: string
-    }
+    endpoint: IEndpoint
 }
 
 class DashboardState {
@@ -118,19 +117,9 @@ class Edit extends Component<ParamTypes>{
                             <span className="right"><RiAddLine /></span>
                         </div>
                         {
-                        this.state.data.map((item, index) =>
-                            <div key={index} className="shadow card">
-                                <div className="side-panel-p">
-                                    {item.endpoint.url}
-                                </div>
-                                {/* NOTE: add the "closed" class to fold the card */}
-                                <div className="closed data-container" key={index}>
-                                    <pre>
-                                    {JSON.stringify(item.data, null, "  ")}
-                                    </pre>
-                                </div>
-                            </div>
-                        )
+                            this.state.data.map((item, index) =>
+                                <DataItem item={item} key={index}/>
+                            )
                         }
                     </div>
                 </div>
