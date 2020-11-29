@@ -286,6 +286,15 @@ input.text-input {
     }
   }
 
+  &.shadow {
+    border: none;
+    box-shadow: 0 0 1rem 0.1rem rgba(0,0,0,0.1);
+
+    .dark & {
+      box-shadow: 0 0 1rem 0.1rem rgba(0, 0, 0, 0.308);
+    }
+  }
+
   //background-color: $ui-light;
   color: $text-dark;
   .dark & {

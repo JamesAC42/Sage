@@ -118,12 +118,13 @@ class Edit extends Component<ParamTypes>{
                             <span className="right"><RiAddLine /></span>
                         </div>
                         {
-                        this.state.data.map((item, index) => 
-                            <div key={index}>
+                        this.state.data.map((item, index) =>
+                            <div key={index} className="shadow card">
                                 <div className="side-panel-p">
                                     {item.endpoint.url}
                                 </div>
-                                <div className="data-container" key={index}>
+                                {/* NOTE: add the "closed" class to fold the card */}
+                                <div className="closed data-container" key={index}>
                                     <pre>
                                     {JSON.stringify(item.data, null, "  ")}
                                     </pre>

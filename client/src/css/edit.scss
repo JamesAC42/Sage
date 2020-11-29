@@ -66,15 +66,44 @@ $control-bar-width: 4rem;
     animation: contractSidebar .2s ease-in-out 1;
     .side-panel-inner {
       .side-panel-p {
-        margin-top: 20px;
-        margin-bottom: 10px;
+        padding: 1rem;
         text-align: center;
       }
+
+      .card {
+        padding: 0;
+      }
+
+      .data-container {
+        &.closed {
+          display: none;
+        }
+
+        width: 100%;
+
+        background: rgb(31, 32, 56);
+        color: rgb(61, 233, 181);
+        .dark & {
+          background: rgb(16, 18, 26);
+          color: rgb(65, 253, 149);
+        }
+
+        & > pre {
+          padding: 1rem;
+          margin: 0; // TODO: Something weird is happening with the margins around here and this is a hacky sort of fix.
+          font-family: OverpassMono;
+          white-space: pre-wrap;
+          word-wrap: break-word;
+          font-size: 14px;
+        }
+      }
     }
+
     &.side-panel-visible {
       left: -30vw;
       animation: expandSidebar 0.2s ease-in-out 1;
     }
+
     .dark & {
       background:$ui-dark;
     }
@@ -120,26 +149,6 @@ $control-bar-width: 4rem;
   .dark & {
     color: $text-light;
     border-color: $ui-dark-subtle;
-  }
-}
-
-.data-container {
-  margin:0;
-  padding:5px 15px;
-  width:calc(100% - 30px);
-  background: rgb(31, 32, 56);
-  color: rgb(61, 233, 181);
-  border-radius: 0px;
-  .dark & {
-    background: rgb(16, 18, 26);
-    color: rgb(65, 253, 149);
-  }
-  & > pre {
-    font-family: OverpassMono;
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    font-size: 14px;
-    padding-right:17px;
   }
 }
 
