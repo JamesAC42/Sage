@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import {
     Redirect
 } from 'react-router-dom';
-import { io } from 'socket.io-client';
+import { io, Socket } from 'socket.io-client';
 
 import { IDashboard } from './types/Dashboard';
 import { IEndpoint } from './types/Endpoint';
 
 import DataItem from './DataItem';
 
-import { RiMenuLine, RiAddLine, RiCloseLine } from 'react-icons/ri';
+import { RiMenuLine, RiAddLine, RiCloseLine, RiDeleteBinLine } from 'react-icons/ri';
 import { GoGraph } from 'react-icons/go';
 import '../../css/edit.scss';
 
@@ -30,10 +30,16 @@ class DashboardState {
     dashboard: IDashboard;
     data: Array<IDashData>;
     sidePanelVisible:boolean;
+    showDialogue:boolean;
+    socket: Socket;
+    redirect: boolean;
     constructor() {
         this.sidePanelVisible = true;
         this.dashboard = {} as IDashboard;
         this.data = new Array<IDashData>();
+        this.showDialogue = false;
+        this.socket = io('http://localhost:3500/');
+        this.redirect = false;
     }
 }
 
@@ -59,6 +65,8 @@ class Edit extends Component<ParamTypes>{
             });
         });
 
+        this.setState({socket});
+
         const url = `/api/getDashboard?id=${id}`
         fetch(url, {
             method: 'GET'
@@ -74,6 +82,10 @@ class Edit extends Component<ParamTypes>{
         });
     }
 
+    componentWillUnmount() {
+        this.state.socket.disconnect();
+    }
+
     readableDate(date:string) {
         const d = new Date(date);
         return d.toDateString();
@@ -85,11 +97,42 @@ class Edit extends Component<ParamTypes>{
         })
     }
 
+    toggleDialogue() {
+        this.setState({
+            showDialogue: !this.state.showDialogue
+        });
+    }
+
+    deleteDashboard() {
+        fetch('/api/deleteDashboard', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                id: this.props.match.params.id
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data.success) {
+                this.setState({redirect: true})
+            } else {
+                console.log("failure");
+            }
+        });
+    }
+
     render() {
         const id = this.props.match.params.id;
         if(!getDashboard(id)) {
             return(
                 <Redirect to="/home" />
+            )
+        }
+        if(this.state.redirect) {
+            return(
+                <Redirect to="/profile" />
             )
         }
 
@@ -98,19 +141,48 @@ class Edit extends Component<ParamTypes>{
         const sidePanelControlIcon = this.state.sidePanelVisible ?
             <RiMenuLine /> : <RiCloseLine />;
 
+        const blur = this.state.showDialogue ? "blur" : "";
+
         return(
             <div className="container container-fill bg flex-row">
-                <div className="panel control-bar">
+                {
+                    this.state.showDialogue ? 
+                    <div className="dialogue-container">
+                        <div className="dialogue">
+                            <div className="dialogue-message">
+                                Are you sure you want to delete this dashboard?
+                            </div>
+                            <div className="dialogue-button-container">
+                                <div 
+                                    className="dialogue-button confirm"
+                                    onClick={() => this.deleteDashboard()}>
+                                        Yes
+                                </div>
+                                <div 
+                                    className="dialogue-button deny"
+                                    onClick={() => this.toggleDialogue()}>
+                                        Cancel
+                                </div>
+                            </div>
+                        </div>
+                    </div> : null
+                }
+                <div className={`panel control-bar ${blur}`}>
                     <div
                         className={`control-item ${sidePanelClass}`}
                         onClick={this.toggleSidePanel}>
                         {sidePanelControlIcon}
                     </div>
+                    <div 
+                        className="control-item delete"
+                        onClick={() => this.toggleDialogue()}>
+                        <RiDeleteBinLine />
+                    </div>
                     <div className="control-item">
                         <RiMenuLine />
                     </div>
                 </div>
-                <div className={`panel side-panel ${sidePanelClass}`}>
+                <div className={`panel side-panel ${sidePanelClass} ${blur}`}>
                     <div className="side-panel-inner flex-col">
                         <div className="panel-header">
                             <span>Data</span>
@@ -123,7 +195,7 @@ class Edit extends Component<ParamTypes>{
                         }
                     </div>
                 </div>
-                <div className="panel main-panel">
+                <div className={`panel main-panel ${blur}`}>
                     <div className="panel-header">
                         {this.state.dashboard.name}
                         <span className="subtle">
@@ -131,7 +203,9 @@ class Edit extends Component<ParamTypes>{
                         </span>
                     </div>
                     <div className="edit-space">
-                        <div className="visual"><GoGraph /></div>
+                        <div className="visual">
+                            <GoGraph/>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -53,6 +53,10 @@ $control-bar-width: 4rem;
       right: $standard-gutter;
     }
   }
+  
+  &.blur {
+    filter:blur(4px);
+  }
 
   &.side-panel {
     position: fixed;
@@ -143,6 +147,11 @@ $control-bar-width: 4rem;
       &:first-of-type {
         border-bottom: 1px solid $ui-subtle;
       }
+      &.delete {
+        &:hover {
+          background-color: $error;
+        }
+      }
     }
   }
 
@@ -154,8 +163,8 @@ $control-bar-width: 4rem;
 
 .edit-space {
   position:relative;
-  width:100vh;
-  height:100vh;
+  width:200vh;
+  height:300vh;
 }
 
 .visual {
@@ -164,11 +173,78 @@ $control-bar-width: 4rem;
   height:300px;
   width:400px;
   border-radius:5px;
-  top:20%;
-  left:20%;
+  top:100px;
+  left:100px;
   color:#fff;
   font-size:40px;
   text-align:center;
   line-height:300px;
   cursor:pointer;
+}
+
+@keyframes grow {
+  0% {
+    transform:scale(0);
+  }
+  100% {
+    transform:scale(1);
+  }
+}
+
+.dialogue-container {
+  position:fixed;
+  z-index:1000;
+  top:0;
+  left:0;
+  height:calc(100vh - #{$nav-height});
+  width:100vw;
+  margin:0;
+  padding:0;
+  background:rgba(22, 22, 22, 0.712);
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  justify-content: center;
+
+  .dialogue {
+    display:flex;
+    flex-direction: column;
+    align-items:stretch;
+    width:30em;
+    padding:50px;
+    background:rgb(20, 19, 24);
+    border-radius:5px;
+    animation:grow .15s ease-in-out 1;
+    box-shadow: 2px 5px 30px 0px rgba(0,0,0,0.75);
+    .dialogue-message {
+      line-height:2rem;
+      font-size:1.8rem;
+      text-align:center;
+    }
+    .dialogue-button-container {
+      margin-top:15px;
+      height:3rem;
+      display:flex;
+      flex-direction: row;
+      gap:10px;
+      align-items:stretch;
+      .dialogue-button {
+        flex:1;
+        font-size:1.2rem;
+        color:#000;
+        transition:.1s ease-in-out;
+        cursor:pointer;
+        border-radius:5px;
+        background:rgb(134, 134, 134);
+        line-height:3rem;
+        text-align:center;
+        &.confirm:hover {
+          background:rgb(59, 88, 252)
+        }
+        &.deny:hover {
+          background:rgb(255, 69, 69);
+        }
+      }
+    }
+  }
 }

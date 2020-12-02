@@ -3,11 +3,8 @@ import dashboardQueries from '../queries/dashboardQueries';
 const getDashboards = (req: any, res: any, db:any) => {
 
     let query;
-    console.log(req.query.user);
     if(req.query.user) {
-        console.log("user");
         let user = req.session.key;
-        console.log(user);
         query = {
             name: 'get-dashboard-by-user',
             text: dashboardQueries.getDashboardsByUser,
@@ -28,7 +25,6 @@ const getDashboards = (req: any, res: any, db:any) => {
             })
         })
         .catch((e:any) => {
-            console.log(e);
             res.send({
                 success:false
             })

@@ -13,6 +13,7 @@ var register_1 = __importDefault(require("./controllers/register"));
 var getSession_1 = __importDefault(require("./controllers/getSession"));
 var destroySession_1 = __importDefault(require("./controllers/destroySession"));
 var createDashboard_1 = __importDefault(require("./controllers/createDashboard"));
+var deleteDashboard_1 = __importDefault(require("./controllers/deleteDashboard"));
 var getDashboard_1 = __importDefault(require("./controllers/getDashboard"));
 var getDashboards_1 = __importDefault(require("./controllers/getDashboards"));
 var getData_1 = __importDefault(require("./controllers/getData"));
@@ -54,6 +55,9 @@ app.post('/api/register', function (req, res) {
 });
 app.post('/api/createDashboard', function (req, res) {
     createDashboard_1.default(req, res, client, redisClient);
+});
+app.post('/api/deleteDashboard', function (req, res) {
+    deleteDashboard_1.default(req, res, client, redisClient);
 });
 app.get('/api/getUser', function (req, res) {
     getUser_1.default(req, res, client);

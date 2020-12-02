@@ -9,6 +9,7 @@ import register  from './controllers/register';
 import getSession from './controllers/getSession';
 import destroySession from './controllers/destroySession';
 import createDashboard from './controllers/createDashboard';
+import deleteDashboard from './controllers/deleteDashboard';
 import getDashboard from './controllers/getDashboard';
 import getDashboards from './controllers/getDashboards';
 import getData from './controllers/getData';
@@ -60,6 +61,10 @@ app.post('/api/register', (req: any, res: any) => {
 
 app.post('/api/createDashboard', (req: any, res: any) => {
     createDashboard(req, res, client, redisClient);
+});
+
+app.post('/api/deleteDashboard', (req: any, res: any) => {
+    deleteDashboard(req, res, client, redisClient);
 });
 
 app.get('/api/getUser', (req: any, res: any) => {
