@@ -146,19 +146,19 @@ class Edit extends Component<ParamTypes>{
         return(
             <div className="container container-fill bg flex-row">
                 {
-                    this.state.showDialogue ? 
+                    this.state.showDialogue ?
                     <div className="dialogue-container">
-                        <div className="dialogue">
+                        <div className="dialogue delete-dashboard-dialogue">
                             <div className="dialogue-message">
                                 Are you sure you want to delete this dashboard?
                             </div>
                             <div className="dialogue-button-container">
-                                <div 
+                                <div
                                     className="dialogue-button confirm"
                                     onClick={() => this.deleteDashboard()}>
                                         Yes
                                 </div>
-                                <div 
+                                <div
                                     className="dialogue-button deny"
                                     onClick={() => this.toggleDialogue()}>
                                         Cancel
@@ -173,20 +173,19 @@ class Edit extends Component<ParamTypes>{
                         onClick={this.toggleSidePanel}>
                         {sidePanelControlIcon}
                     </div>
-                    <div 
+                    <div
                         className="control-item delete"
                         onClick={() => this.toggleDialogue()}>
                         <RiDeleteBinLine />
-                    </div>
-                    <div className="control-item">
-                        <RiMenuLine />
                     </div>
                 </div>
                 <div className={`panel side-panel ${sidePanelClass} ${blur}`}>
                     <div className="side-panel-inner flex-col">
                         <div className="panel-header">
                             <span>Data</span>
-                            <span className="right"><RiAddLine /></span>
+                            <span className="right">
+                                <RiAddLine onClick={() => this.toggleDialogue()} />
+                            </span>
                         </div>
                         {
                             this.state.data.map((item, index) =>
