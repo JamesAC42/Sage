@@ -1,67 +1,14 @@
 import React, { Component } from 'react';
 import '../../css/home.scss';
 
+import Footer from './Footer';
+import Slideshow from './Slideshow';
+
 import {
-	Slide,
 	slides1,
 	slides2,
 	slides3
 } from './data/slides';
-
-class SlideshowState {
-	active:number;
-	constructor() {
-		this.active = 0;
-	}
-}
-
-interface SlideshowProps {
-	slides:Array<Slide>,
-	reversed:boolean
-}
-
-class Slideshow extends Component<SlideshowProps> {
-	state:SlideshowState;
-	constructor(props:SlideshowProps) {
-		super(props);
-		this.state = new SlideshowState();
-	}
-	componentDidMount() {
-		setInterval(() => {
-			const next = this.state.active === this.props.slides.length - 1 ?
-				0 : this.state.active + 1;
-			this.setState({
-				active: next
-			});
-		}, 10000);
-	}
-	render(){
-		return(
-			<div className="presentation-row slideshow">
-				{
-					this.props.reversed ? 
-					<div className="col">
-						<img src={this.props.slides[this.state.active].img} alt="Slide" />
-					</div> : null
-				}
-				<div className="col slide">
-					<div className="info-header">
-						{this.props.slides[this.state.active].header}
-					</div>
-					<ul className="info">
-						<li>{this.props.slides[this.state.active].text}</li>
-					</ul>
-				</div>
-				{
-					!this.props.reversed ? 
-					<div className="col">
-						<img src={this.props.slides[this.state.active].img} alt="Slide" />
-					</div> : null
-				}
-			</div>
-		)
-	}
-}
 
 class HomeState {
 	scrollPercent:number;
@@ -90,7 +37,7 @@ export default class Home extends Component {
 		const translate = "translate(-50%, calc(-50% + " + parallax + "vh)) rotate(45deg)";
         return(			
 			<div
-				className="container container-fill bg scroll"
+				className="container container-fill scroll bg"
 				onScroll={this.handleScroll}>
 
 				<div className="home-content">
@@ -142,33 +89,8 @@ export default class Home extends Component {
 					reversed={false}
 					slides={slides3}/>
 
-				<div className="footer-card"> 
-					<div className="row">
-						<div>SAGE</div>
-						<div>800-000-000</div>
-						<div>Troy, NY</div>
-					</div>
-					<div className="presentation-row links">
-						{/* column 1 */}
-						<div className="col">
-							<div> SOMETHING </div>
-						</div>
-						{/* column 2 */}
-						<div className="col">
-							<div> SOMETHING </div>
-						</div>
-						{/* column 3*/}
-						<div className="col">
-							<div> SOMETHING </div>
-						</div>
-					</div>
-					<hr />
-					<div className="row">
-						<p className="col-sm">
-							&copy;{new Date().getFullYear()} SAGE | All Rights Reserved | Terms Of Service | Privacy
-						</p>
-					</div>
-				</div>
+				<Footer />
+				
 			</div>
         )
     }

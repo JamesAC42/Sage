@@ -3,11 +3,7 @@ import img2 from '../../../images/d-2.jpg';
 import img3 from '../../../images/d-3.jpg';
 import img4 from '../../../images/d-4.jpg';
 
-export interface Slide {
-	header:string,
-	text:string,
-	img:string
-}
+import Slide from '../types/Slide';
 
 export const slides1:Array<Slide> = [
 	{

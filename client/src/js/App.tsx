@@ -33,10 +33,11 @@ interface AppProps {
 class AppBind extends Component<AppProps> {
   render() {
     return(
-      <div className={
-        this.props.settings.darkMode ?
-        "dark" : "light"
-      }>
+      <div 
+        className={
+          this.props.settings.darkMode ?
+          "dark" : "light"}
+      >
 
         <div className="stripe"></div>
         <div className="background"></div>

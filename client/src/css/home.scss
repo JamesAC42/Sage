@@ -124,8 +124,11 @@ ul.info {
     }
 
     .links {
-        height: 30vh;
-    } 
+        padding: 30px 0;
+        a {
+            color:$text-light;
+        }
+    }
 }
 
 .col-1 {

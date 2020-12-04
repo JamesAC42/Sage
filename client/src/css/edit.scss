@@ -212,14 +212,21 @@ $control-bar-width: 4rem;
     align-items:stretch;
     width:30em;
     padding:50px;
-    background:rgb(20, 19, 24);
     border-radius:5px;
     animation:grow .15s ease-in-out 1;
     box-shadow: 2px 5px 30px 0px rgba(0,0,0,0.75);
+    background:rgb(247, 247, 247);
+    .dark & {
+      background:rgb(20, 19, 24);
+    }
     .dialogue-message {
       line-height:2rem;
       font-size:1.8rem;
       text-align:center;
+      color:$text-dark;
+      .dark & {
+        color:$text-light;
+      }
     }
     .dialogue-button-container {
       margin-top:15px;
@@ -231,13 +238,17 @@ $control-bar-width: 4rem;
       .dialogue-button {
         flex:1;
         font-size:1.2rem;
-        color:#000;
         transition:.1s ease-in-out;
         cursor:pointer;
+        background:rgb(126, 126, 126);
         border-radius:5px;
-        background:rgb(134, 134, 134);
         line-height:3rem;
         text-align:center;
+        color:#fff;
+        .dark & {
+          color:#000;
+          background:rgb(134, 134, 134);
+        }
         &.confirm:hover {
           background:rgb(59, 88, 252)
         }
