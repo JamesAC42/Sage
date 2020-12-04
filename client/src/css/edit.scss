@@ -211,7 +211,7 @@ $control-bar-width: 4rem;
     flex-direction: column;
     align-items:stretch;
 
-    padding: 3 * $standard-gutter;
+    padding: 2 * $standard-gutter;
 
     color: $ui-dark;
     background: $ui-light;
@@ -235,8 +235,40 @@ $control-bar-width: 4rem;
     text-align:center;
   }
   .dialogue-button-container {
-    margin-top:15px;
-    height:3rem;
+    margin-top: $standard-gutter;
+    display:flex;
+    flex-direction: row;
+    gap: $standard-gutter;
+    align-items:stretch;
+    .dialogue-button {
+      flex:1;
+      font-size:1.2rem;
+      color: $ui-light;
+      transition:.1s ease-in-out;
+      cursor:pointer;
+      border-radius: 0.5rem;;
+      background:rgb(134, 134, 134);
+      line-height:3rem;
+      text-align:center;
+      &.confirm:hover {
+        background-color: $success;
+      }
+      &.deny:hover {
+        background-color: $error;
+      }
+    }
+  }
+}
+
+.add-new-data-source-dialogue {
+  width:30rem;
+  .dialogue-message {
+    line-height:2rem;
+    font-size:1.8rem;
+    text-align:center;
+  }
+  .dialogue-button-container {
+    margin-top: $standard-gutter;
     display:flex;
     flex-direction: row;
     gap: $standard-gutter;

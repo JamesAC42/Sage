@@ -30,14 +30,20 @@ class DashboardState {
     dashboard: IDashboard;
     data: Array<IDashData>;
     sidePanelVisible:boolean;
-    showDialogue:boolean;
+    showDeleteDashboardDialogue:boolean;
+    addNewDataSourceDialogue:boolean;
+    addNewVisualizationDialogue:boolean;
+    showDialogue:string;
     socket: Socket;
     redirect: boolean;
     constructor() {
         this.sidePanelVisible = true;
         this.dashboard = {} as IDashboard;
         this.data = new Array<IDashData>();
-        this.showDialogue = false;
+        this.showDeleteDashboardDialogue = false;
+        this.addNewDataSourceDialogue = false;
+        this.addNewVisualizationDialogue = false;
+        this.showDialogue = "";
         this.socket = io('http://localhost:3500/');
         this.redirect = false;
     }
@@ -97,10 +103,25 @@ class Edit extends Component<ParamTypes>{
         })
     }
 
-    toggleDialogue() {
+    toggleShowDeleteDashboardDialogue() {
         this.setState({
-            showDialogue: !this.state.showDialogue
+            showDialogue: !this.state.showDeleteDashboardDialogue,
+            showDeleteDashboardDialogue: !this.state.showDeleteDashboardDialogue
         });
+    }
+
+    toggleAddNewDataSourceDialogue() {
+      this.setState({
+          showDialogue: !this.state.addNewDataSourceDialogue,
+          addNewDataSourceDialogue: !this.state.addNewDataSourceDialogue
+      });
+    }
+
+    toggleAddNewVisualizationDialogue() {
+      this.setState({
+          showDialogue: !this.state.addNewVisualizationDialogue,
+          addNewVisualizationDialogue: !this.state.addNewVisualizationDialogue
+      });
     }
 
     deleteDashboard() {
@@ -146,7 +167,7 @@ class Edit extends Component<ParamTypes>{
         return(
             <div className="container container-fill bg flex-row">
                 {
-                    this.state.showDialogue ?
+                    this.state.showDeleteDashboardDialogue ?
                     <div className="dialogue-container">
                         <div className="dialogue delete-dashboard-dialogue">
                             <div className="dialogue-message">
@@ -160,10 +181,26 @@ class Edit extends Component<ParamTypes>{
                                 </div>
                                 <div
                                     className="dialogue-button deny"
-                                    onClick={() => this.toggleDialogue()}>
+                                    onClick={() => this.toggleShowDeleteDashboardDialogue()}>
                                         Cancel
                                 </div>
                             </div>
+                        </div>
+                    </div> : null
+                }
+                {
+                    this.state.addNewDataSourceDialogue ?
+                    <div className="dialogue-container">
+                        <div className="dialogue add-new-data-source-dialogue">
+
+                        </div>
+                    </div> : null
+                }
+                {
+                    this.state.addNewDataSourceDialogue ?
+                    <div className="dialogue-container">
+                        <div className="dialogue add-new-visualization-dialogue">
+
                         </div>
                     </div> : null
                 }
@@ -175,7 +212,7 @@ class Edit extends Component<ParamTypes>{
                     </div>
                     <div
                         className="control-item delete"
-                        onClick={() => this.toggleDialogue()}>
+                        onClick={() => this.toggleShowDeleteDashboardDialogue()}>
                         <RiDeleteBinLine />
                     </div>
                 </div>
@@ -184,7 +221,7 @@ class Edit extends Component<ParamTypes>{
                         <div className="panel-header">
                             <span>Data</span>
                             <span className="right">
-                                <RiAddLine onClick={() => this.toggleDialogue()} />
+                                <RiAddLine onClick={() => this.toggleAddNewDataSourceDialogue()} />
                             </span>
                         </div>
                         {
