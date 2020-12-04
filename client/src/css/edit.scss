@@ -53,7 +53,7 @@ $control-bar-width: 4rem;
       right: $standard-gutter;
     }
   }
-  
+
   &.blur {
     filter:blur(4px);
   }
@@ -210,40 +210,84 @@ $control-bar-width: 4rem;
     display:flex;
     flex-direction: column;
     align-items:stretch;
-    width:30em;
-    padding:50px;
-    background:rgb(20, 19, 24);
-    border-radius:5px;
+
+    padding: 2 * $standard-gutter;
+
+    color: $ui-dark;
+    background: $ui-light;
+    .dark & {
+      background-color: $ui-dark;
+      color: $text-light;
+    }
+
+    border-radius: $standard-gutter;
     animation:grow .15s ease-in-out 1;
     box-shadow: 2px 5px 30px 0px rgba(0,0,0,0.75);
-    .dialogue-message {
-      line-height:2rem;
-      font-size:1.8rem;
+  }
+}
+
+
+.delete-dashboard-dialogue {
+  width:30rem;
+  .dialogue-message {
+    line-height:2rem;
+    font-size:1.8rem;
+    text-align:center;
+  }
+  .dialogue-button-container {
+    margin-top: $standard-gutter;
+    display:flex;
+    flex-direction: row;
+    gap: $standard-gutter;
+    align-items:stretch;
+    .dialogue-button {
+      flex:1;
+      font-size:1.2rem;
+      color: $ui-light;
+      transition:.1s ease-in-out;
+      cursor:pointer;
+      border-radius: 0.5rem;;
+      background:rgb(134, 134, 134);
+      line-height:3rem;
       text-align:center;
+      &.confirm:hover {
+        background-color: $success;
+      }
+      &.deny:hover {
+        background-color: $error;
+      }
     }
-    .dialogue-button-container {
-      margin-top:15px;
-      height:3rem;
-      display:flex;
-      flex-direction: row;
-      gap:10px;
-      align-items:stretch;
-      .dialogue-button {
-        flex:1;
-        font-size:1.2rem;
-        color:#000;
-        transition:.1s ease-in-out;
-        cursor:pointer;
-        border-radius:5px;
-        background:rgb(134, 134, 134);
-        line-height:3rem;
-        text-align:center;
-        &.confirm:hover {
-          background:rgb(59, 88, 252)
-        }
-        &.deny:hover {
-          background:rgb(255, 69, 69);
-        }
+  }
+}
+
+.add-new-data-source-dialogue {
+  width:30rem;
+  .dialogue-message {
+    line-height:2rem;
+    font-size:1.8rem;
+    text-align:center;
+  }
+  .dialogue-button-container {
+    margin-top: $standard-gutter;
+    display:flex;
+    flex-direction: row;
+    gap: $standard-gutter;
+    align-items:stretch;
+    .dialogue-button {
+      flex:1;
+      font-size:1.2rem;
+      color: $ui-light;
+      transition:.1s ease-in-out;
+      cursor:pointer;
+      border-radius: 0.5rem;;
+      background:rgb(134, 134, 134);
+      line-height:3rem;
+      text-align:center;
+      &.confirm:hover {
+        background-color: $success;
+      }
+      &.deny:hover {
+        background-color: $error;
       }
     }
   }
