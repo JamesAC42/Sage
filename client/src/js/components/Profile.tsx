@@ -104,7 +104,9 @@ class ProfileBind extends Component<SessionProps> {
                 <div className="input-label">Username</div>
                 <input className="text-input" type="text" />
                 <br />
-                some sort of other password reset stuff here
+                <div className="input-label">Password</div>
+                <input className="text-input" type="text" />
+                <br />
               </div>
             </div>
           </div>

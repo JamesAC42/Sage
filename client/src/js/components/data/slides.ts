@@ -1,7 +1,7 @@
-import img1 from '../../../images/d-1.jpg';
-import img2 from '../../../images/d-2.jpg';
-import img3 from '../../../images/d-3.jpg';
-import img4 from '../../../images/d-4.jpg';
+import img1 from '../../../images/linegraph.png';
+import img2 from '../../../images/piegraph.png';
+import img3 from '../../../images/bargraph.png';
+import img4 from '../../../images/horbargraph.png';
 
 import Slide from '../types/Slide';
 

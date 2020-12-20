@@ -9,8 +9,6 @@ const deleteDashboard = (req: any, res: any, client: any, cache: any) => {
     }
     client.query(useridQuery)
         .then((r: any) => {
-            console.log(r.rows[0].creator_id);
-            console.log(req.session.key);
             if(r.rows[0].creator_id === req.session.key) {
                 cache.del(id, (err: any, response: any) => {
                     console.log(response);

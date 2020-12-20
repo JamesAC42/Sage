@@ -11,7 +11,10 @@ a {
 }
 
 hr {
-  border: 0.1px solid $contrast; // This needs a better color
+  border: 0.1px solid $ui-light;
+  .dark & {
+    border: 0.1px solid $contrast; // This needs a better color
+  }
 }
 
 .text-subtle {
